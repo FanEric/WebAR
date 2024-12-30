@@ -1,0 +1,164 @@
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class ManipulateObject : MonoBehaviour
+{
+    private float previousDistance;
+    private Vector2 previousPosition;
+    private Vector2[] previousTouchPositions = new Vector2[2];
+    private Vector3 previousTranslatePosition;
+    //public TMP_InputField kTransRate;
+    public TMP_Text kSldVale;
+    public Slider kSld;
+    public float kTransRate = 0.001f;
+
+    public float rotateSpeed = 4f;
+    public float rotateDelta = 5f;
+    public float mouseX = 0f;
+    public float mouseY = 60f;
+    public float angleMax = 90;
+    public float angleMin = -90;
+
+    public float panSpeed = 5f;
+    public bool doTranslate = true;
+    public bool doRotate = false;
+    public bool doScale = false;
+
+    public float scaleRate = 5f;
+    public float scaleMin = 0.1f;
+    public float scaleMax = 5;
+
+    Transform mTrans;
+    private Quaternion currentRotation;
+    private Quaternion desiredRotation;
+
+    private void Awake()
+    {
+        mTrans = transform;
+    }
+
+    public void DoReset()
+    {
+        mTrans.position = Vector3.zero;
+        mTrans.rotation = Quaternion.identity;
+        mTrans.localScale = Vector3.one;
+    }
+
+    void HandleMouse()
+    {
+        if (doTranslate && Input.GetMouseButton(0))
+        {
+            mTrans.Translate(Vector3.right * Input.GetAxis("Mouse X") * Time.fixedDeltaTime * panSpeed, Space.World);
+            mTrans.Translate(Vector3.up * Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * panSpeed, Space.World);
+        }
+
+        if (doRotate && Input.GetMouseButton(0))
+        {
+            mouseX -= Input.GetAxis("Mouse X") * rotateSpeed;
+            mouseY += Input.GetAxis("Mouse Y") * rotateSpeed;
+
+            //mouseY = ClampAngle(mouseY, angleMin, angleMax);
+
+            currentRotation = mTrans.rotation;
+            desiredRotation = Quaternion.Euler(mouseY, mouseX, 0);
+            Quaternion rotation = Quaternion.Slerp(currentRotation, desiredRotation, Time.fixedDeltaTime * rotateDelta);
+            mTrans.rotation = rotation;
+        }
+
+        if (doScale)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                float axis = Input.GetAxis("Mouse X");
+                if(axis != 0)
+                {
+                    float factor = axis * Time.fixedDeltaTime * scaleRate;
+                    mTrans.localScale += Vector3.one * factor;
+                    if (mTrans.localScale.x <= scaleMin)
+                        mTrans.localScale = new Vector3(scaleMin, scaleMin, scaleMin);
+                    else if(mTrans.localScale.x >= scaleMax)
+                        mTrans.localScale = new Vector3(scaleMax, scaleMax, scaleMax);
+                }
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            DoReset();
+        }
+    }
+
+    void HandleTouch()
+    {
+        //kSldVale.text = kSld.value.ToString();
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Moved)
+            {
+                if (previousPosition == Vector2.zero)
+                {
+                    previousPosition = touch.position;
+                }
+                else
+                {
+                    Vector2 deltaPosition = touch.position - previousPosition;
+                    transform.Rotate(Vector3.up, -deltaPosition.x * 0.5f);
+                    previousPosition = touch.position;
+                }
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                previousPosition = Vector2.zero;
+            }
+        }
+        else if (Input.touchCount == 2)
+        {
+            Touch touch1 = Input.GetTouch(0);
+            Touch touch2 = Input.GetTouch(1);
+
+            if (touch1.phase == TouchPhase.Began || touch2.phase == TouchPhase.Began)
+            {
+                previousTouchPositions[0] = touch1.position;
+                previousTouchPositions[1] = touch2.position;
+                previousDistance = Vector2.Distance(touch1.position, touch2.position);
+                previousTranslatePosition = transform.position;
+            }
+            else if (touch1.phase == TouchPhase.Moved && touch2.phase == TouchPhase.Moved)
+            {
+                Vector2 currentTouchPosition1 = touch1.position;
+                Vector2 currentTouchPosition2 = touch2.position;
+                float currentDistance = Vector2.Distance(currentTouchPosition1, currentTouchPosition2);
+                float scaleFactor = currentDistance / previousDistance;
+                transform.localScale *= scaleFactor;
+                previousDistance = currentDistance;
+
+                // ¼ÆËãË«Ö¸Æ½ÒÆ
+                Vector2 midPoint = (currentTouchPosition1 + currentTouchPosition2) / 2;
+                Vector2 previousMidPoint = (previousTouchPositions[0] + previousTouchPositions[1]) / 2;
+                Vector3 translation = new Vector3(midPoint.x - previousMidPoint.x, 0, midPoint.y - previousMidPoint.y);
+                transform.position = previousTranslatePosition + translation * kTransRate;
+                //transform.position = previousTranslatePosition + translation * kTransRate * kSld.value;
+            }
+        }
+    }
+   
+    void Update() 
+    {
+
+        HandleMouse();
+
+        //HandleTouch();
+    }
+
+    float ClampAngle(float angle, float min, float max)
+    {
+        if (angle < -360)
+            angle += 360;
+        if (angle > 360)
+            angle -= 360;
+        return Mathf.Clamp(angle, min, max);
+    }
+
+}
