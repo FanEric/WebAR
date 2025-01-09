@@ -56,7 +56,7 @@ namespace Imagine.WebAR
 
         private int debugImageTargetIndex = 0;
 
-        private bool isTrackerStopped = false;
+        private bool isTrackerStopped = true;
         [Space][SerializeField] private bool startStopOnEnableDisable = false;
         [SerializeField] private bool stopOnDestroy = true;
 
@@ -67,7 +67,6 @@ namespace Imagine.WebAR
         private Transform mCurTarget;
         IEnumerator Start()
         {
-            GameObject.Find("ResetButton").GetComponent<Button>().onClick.AddListener(DoReset);
             if(transform.parent != null) {
                 Debug.LogError("ImageTracker should be a root transform to receive Javascript messages");
             }
@@ -102,7 +101,7 @@ namespace Imagine.WebAR
             //     yield return new WaitForSeconds(0.1f);
             // }
 
-            StartWebGLiTracker(serializedIds, name);
+            //StartWebGLiTracker(serializedIds, name);
             Debug.Log(trackerSettings.Serialize());
             SetWebGLiTrackerSettings(trackerSettings.Serialize());
 
@@ -117,11 +116,10 @@ namespace Imagine.WebAR
             yield break;
         }
 
-        private void DoReset()
+        public void DoReset()
         {
             mCurTarget?.gameObject.SetActive(false);
-
-            StartTracker();
+            //StartTracker();
         }
 
         public Transform GetCurTarget()
@@ -192,7 +190,8 @@ namespace Imagine.WebAR
 
         void OnTrackingFound(string id)
         {
-            Debug.Log("---OnTrackingFound---");
+            Debug.Log("---OnTrackingFound---: " + id);
+            OnImageFound?.Invoke(id);
             if (!targets.ContainsKey(id))
                 return;
 

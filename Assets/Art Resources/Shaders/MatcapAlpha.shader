@@ -56,6 +56,7 @@ Shader "Custom/MatcapAlpha"
 
 
             sampler2D _MatCap;
+            float4 _MatCap_ST;
             fixed4 _Color;
             half _Intensity;
 
@@ -68,8 +69,8 @@ Shader "Custom/MatcapAlpha"
 
                 float3 viewNorm = mul(UNITY_MATRIX_IT_MV,v.normal);
 
-                o.uv = viewNorm.xy * 0.5 + 0.5;
-                
+                // o.uv = viewNorm.xy * 0.5 + 0.5;
+                o.uv = TRANSFORM_TEX(v.uv, _MatCap);
                 return o;
             }
 

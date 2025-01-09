@@ -217,7 +217,6 @@ namespace Imagine.WebAR
 
         }
 
-
         void CreateVideoPlane(int width, int height)
         {
             Debug.Log("Init video plane");
