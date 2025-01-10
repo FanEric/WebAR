@@ -21,5 +21,7 @@ public class UITransformPanel : MonoBehaviour
     private void OnEnable()
     {
         kTranslateTog.isOn = true;
+        kRotateTog.isOn = false;
+        kScaleTog.isOn = false;
     }
 }

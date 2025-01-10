@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeepModelScreenSize : MonoBehaviour
+public class ItemTipsMng : MonoBehaviour
 {
+    public static ItemTipsMng Instance;
     public float desiredScreenHeight = 200f; // 期望的屏幕高度
 
     private Transform mtr;
@@ -10,8 +11,18 @@ public class KeepModelScreenSize : MonoBehaviour
     public Text kTxt;
     private void Awake()
     {
+        Instance = this;
         mtr = this.transform;
         mainCamera = Camera.main;
+    }
+
+    public void Show(GameObject part)
+    {
+        kTxt.text = part.name;
+        transform.parent.SetParent(part.transform, true);
+        Bounds bounds = part.GetComponent<MeshCollider>().bounds;
+        Vector3 size = bounds.size;
+        transform.position = bounds.center + new Vector3(0, size.y / 2f + .1f, 0);
     }
 
     public void SetPartName(string partName)

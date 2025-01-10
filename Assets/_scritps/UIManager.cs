@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour
 
     public Button kScanBtn;
     public Button kHomeBtn;
-    public Button kCloseBtn;
     public Toggle kCamTog;
     public TMP_Text kTitle;
 
@@ -32,6 +31,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject kStructPanel;
     public GameObject kAssemblyPanel;
+    public GameObject kTestObj;
     string mCurTrackedId;
     // Start is called before the first frame update
     void Start()
@@ -42,11 +42,9 @@ public class UIManager : MonoBehaviour
 
         kScanBtn.onClick.AddListener(BeginScan);
         kHomeBtn.onClick.AddListener(DoHome);
-        kCloseBtn.onClick.AddListener(DoHome);
         kTracker.OnImageFound.AddListener(str => { 
             DoImageFound(); 
             DoReset();
-            Debug.Log("OnImageFound: " + str);
             kTitle.text = mCurTrackedId = str;
         });
         kCamTog.onValueChanged.AddListener(isOn =>
@@ -61,6 +59,25 @@ public class UIManager : MonoBehaviour
         kScanPanel.SetActive(false);
         kMenuPanel.SetActive(false);
         kTransPanel.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            TestStruct();
+        }
+    }
+
+    void TestStruct()
+    {
+        kTestObj.SetActive(true );
+        //kInterTog.isOn = true;
+        kTestObj.transform.GetChild(0).gameObject.SetActive(false);
+        kTestObj.transform.GetChild(1).gameObject.SetActive(true);
+        kStructPanel.SetActive(true);
+        kMenuPanel.SetActive(true);
+        kTransPanel.SetActive(true);
     }
 
     void BeginScan()
@@ -94,39 +111,48 @@ public class UIManager : MonoBehaviour
 
     void ToBrowse(bool isOn)
     {
-        kTracker.SetTargetChildEnable(0);
-
-        //kTransPanel.SetActive(isOn);
+        if(isOn)
+        {
+            kManiScript.DoReset();
+            kTracker.SetTargetChildEnable(0);
+        }
     }
 
     void ToInter(bool isOn)
     {
-        kTracker.SetTargetChildEnable(1);
-        kManiScript.DoReset();
+        if (isOn)
+        {
+            kTracker.SetTargetChildEnable(1);
+            kManiScript.DoReset();
 
-        kManiScript.doTranslate = false;
-        kManiScript.doRotate = true;
-        kManiScript.doScale = false;
-        Debug.Log("structIDs.Contains(mCurTrackedId): " + mCurTrackedId + "--" + structIDs.Contains(mCurTrackedId));
-        if (structIDs.Contains(mCurTrackedId))
-        {
-            kStructPanel.SetActive(true);
+            Debug.Log("structIDs.Contains(mCurTrackedId): " + mCurTrackedId + "--" + structIDs.Contains(mCurTrackedId));
+            if (structIDs.Contains(mCurTrackedId))
+            {
+                kStructPanel.SetActive(true);
+            }
+            else if (assemblyIDs.Contains(mCurTrackedId))
+            {
+                kAssemblyPanel.SetActive(true);
+            }
         }
-        else if (assemblyIDs.Contains(mCurTrackedId))
-        {
-            kAssemblyPanel.SetActive(true);
+        else
+        { 
+            kStructPanel.SetActive(false);
+            kAssemblyPanel.SetActive(false);
         }
     }
 
     void ToVoice(bool isOn)
     {
-        kTracker.SetTargetChildEnable(2);
-        kManiScript.DoReset();
+        if (isOn)
+        {
+            kTracker.SetTargetChildEnable(2);
+            kManiScript.DoReset();
 
-        kManiScript.doTranslate = false;
-        kManiScript.doRotate = false;
-        kManiScript.doScale = false;
-
+            kManiScript.doTranslate = false;
+            kManiScript.doRotate = false;
+            kManiScript.doScale = false;
+        }
     }
 
     void DoReset()

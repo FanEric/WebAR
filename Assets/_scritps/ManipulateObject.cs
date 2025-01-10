@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class ManipulateObject : MonoBehaviour
 {
@@ -33,11 +35,24 @@ public class ManipulateObject : MonoBehaviour
     Transform mTrans;
     private Quaternion currentRotation;
     private Quaternion desiredRotation;
+    public EventSystem eventSystem;
+    public GraphicRaycaster graphicRaycaster;
 
     private void Awake()
     {
         mTrans = transform;
     }
+
+    bool CheckMouseOnUI()
+    {
+        PointerEventData eventData = new PointerEventData(eventSystem);
+        eventData.pressPosition = Input.mousePosition;
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> list = new List<RaycastResult>();
+        graphicRaycaster.Raycast(eventData, list);
+        return list.Count > 0;
+    }
+
 
     public void DoReset()
     {
@@ -48,6 +63,7 @@ public class ManipulateObject : MonoBehaviour
 
     void HandleMouse()
     {
+        if (CheckMouseOnUI()) return;
         if (doTranslate && Input.GetMouseButton(0))
         {
             mTrans.Translate(Vector3.right * Input.GetAxis("Mouse X") * Time.fixedDeltaTime * panSpeed, Space.World);

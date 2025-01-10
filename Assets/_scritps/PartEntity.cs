@@ -15,13 +15,17 @@ public class PartEntity : MonoBehaviour
     Highlighter mHighlighter;
     Renderer[] mAllRenders;
     Dictionary<Renderer, Material[]> mRenderMats = new Dictionary<Renderer, Material[]>();
+
+    private PartItem mItem;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        mPartName = transform.GetSiblingIndex().ToString();
+        gameObject.name = mPartName;
         mHighlighter = GetComponent<Highlighter>();
         GetInitMat();
     }
+
+    public void SetItem(PartItem item) { mItem = item; }
 
     void GetInitMat()
     {
@@ -34,15 +38,24 @@ public class PartEntity : MonoBehaviour
         }
     }
 
-    public void DoSelect(bool isSelected)
+    public void DoSelect(bool isSelected, bool expandAction = false)
     {
         mIsSelected = isSelected;
-        if(isSelected)
+
+        ItemTipsMng.Instance.Show(gameObject);
+
+        DoFlashing(mIsSelected);
+
+        if (expandAction)
+            mItem?.DoSelect(isSelected);
+    }
+
+    void DoFlashing(bool isSelected)
+    {
+        if (isSelected)
             mHighlighter.FlashingOn();
         else
             mHighlighter.FlashingOff();
-
-        DoTrans(isSelected);
     }
 
     public void DoTrans(bool isTrans)
