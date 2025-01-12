@@ -56,9 +56,12 @@ public class ManipulateObject : MonoBehaviour
 
     public void DoReset()
     {
-        mTrans.position = Vector3.zero;
-        mTrans.rotation = Quaternion.identity;
-        mTrans.localScale = Vector3.one;
+        if (mTrans != null)
+        {
+            mTrans.position = Vector3.zero;
+            mTrans.rotation = Quaternion.identity;
+            mTrans.localScale = Vector3.one;
+        }
     }
 
     void HandleMouse()
@@ -72,15 +75,17 @@ public class ManipulateObject : MonoBehaviour
 
         if (doRotate && Input.GetMouseButton(0))
         {
-            mouseX -= Input.GetAxis("Mouse X") * rotateSpeedX;
-            mouseY += Input.GetAxis("Mouse Y") * rotateSpeedY;
+            //mouseX -= Input.GetAxis("Mouse X") * rotateSpeedX;
+            //mouseY += Input.GetAxis("Mouse Y") * rotateSpeedY;
 
-            mouseY = ClampAngle(mouseY, angleMin, angleMax);
+            //mouseY = ClampAngle(mouseY, angleMin, angleMax);
 
-            currentRotation = mTrans.rotation;
-            desiredRotation = Quaternion.Euler(mouseY, mouseX, 0);
-            Quaternion rotation = Quaternion.Slerp(currentRotation, desiredRotation, Time.fixedDeltaTime * rotateDelta);
-            mTrans.rotation = rotation;
+            //currentRotation = mTrans.rotation;
+            //desiredRotation = Quaternion.Euler(mouseY, mouseX, 0);
+            //Quaternion rotation = Quaternion.Slerp(currentRotation, desiredRotation, Time.fixedDeltaTime * rotateDelta);
+            //mTrans.rotation = rotation;
+            mTrans.Rotate(Vector3.down * Input.GetAxis("Mouse X") * rotateSpeedX, Space.World);//绕Y轴进行旋转
+            mTrans.Rotate(Vector3.right * Input.GetAxis("Mouse Y") * rotateSpeedY, Space.World);//绕X轴进行旋转
         }
 
         if (doScale)

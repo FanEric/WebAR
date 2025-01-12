@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +9,18 @@ public class StructPanel : MonoBehaviour
     public Toggle kDisassTog;
     public Animator kArrowAnim;
     public Toggle kArrowTog;
+    public Toggle kTransTog;
+    public Toggle kHideTog;
+    public Toggle kMonoTog;
+    public Button kResetBtn;
+    public ManipulateObject kManiScript;
+    public ToggleGroup kToggleGroup;
+    public CanvasGroup kAssemTogCG;
 
     public Transform kPartContent;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private List<PartEntity> mParts = new List<PartEntity>();
+
     void Start()
     {
         GameObject structObj = GameObject.FindGameObjectWithTag("Struct");
@@ -23,7 +32,8 @@ public class StructPanel : MonoBehaviour
             for (int i = 0; i < trans.childCount; i++)
             {
                 PartEntity entity = trans.GetChild(i).GetComponent<PartEntity>();
-                if(i < itemCount)
+                mParts.Add(entity);
+                if (i < itemCount)
                 {
                     Transform itemTrans = kPartContent.GetChild(i);
                     itemTrans.gameObject.SetActive(true);
@@ -45,52 +55,156 @@ public class StructPanel : MonoBehaviour
         {
             kArrowAnim.SetBool("toPand", isOn);
         });
+
+        kTransTog.onValueChanged.AddListener(isOn => {
+            PartEntity entity = GetSelectedEntity();
+            if (entity == null)
+                kTransTog.isOn = false;
+            else
+                entity.DoTrans(isOn);
+        });
+
+        kHideTog.onValueChanged.AddListener(isOn => {
+            PartEntity entity = GetSelectedEntity();
+            if (entity == null)
+                kHideTog.isOn = false;
+            else
+                entity.DoHide(isOn);
+        });
+
+        kMonoTog.onValueChanged.AddListener(isOn => {
+            PartEntity entity = GetSelectedEntity();
+            kToggleGroup.allowSwitchOff = !isOn;
+            SetGroupInter(!isOn);
+            if (isOn)
+            {
+                if (entity != null)
+                    DoMono(entity);
+            }
+            else
+            {
+                UndoMono();
+            }
+        });
+
+        EventDispatcher<EventDef, PartEntity>.AddListener(EventDef.PartSelect, (entity) => {
+            if (entity.mIsSelected)
+            {
+                if (kMonoTog.isOn)
+                    DoMono(entity);
+                kTransTog.isOn = entity.mIsTransparent;
+                kHideTog.isOn = entity.mIsHided;
+            }
+            else
+            {
+                kTransTog.isOn = false;
+                kHideTog.isOn = false;
+            }
+        });
+
+        kResetBtn.onClick.AddListener(DoReset);
+
     }
 
-    //private void OnDisable()
-    //{
-    //    mPartAnim?.Play("Assembled");
-    //}
+    void SetGroupInter(bool toInter)
+    {
+        kAssemTogCG.alpha = toInter ? 1 : 0.5f;
+        kAssemTogCG.interactable = toInter;
+        kAssemTogCG.blocksRaycasts = toInter;
+    }
+
+    void DoMono(PartEntity selected)
+    {
+        kManiScript.DoReset();
+        foreach (var entity in mParts)
+        { 
+            entity.DoHide(entity != selected);
+        }
+    }
+
+    void UndoMono()
+    {
+        kAssemTog.isOn = true;
+        kManiScript.DoReset();
+        foreach (var entity in mParts)
+        {
+            entity.DoHide(false);
+        }
+    }
+
+    public void DoReset()
+    {
+        kAssemTog.isOn = true;
+        kToggleGroup.allowSwitchOff = true;
+        kManiScript.DoReset();
+
+        foreach (var entity in mParts)
+        {
+            entity.DoSelect(false, true);
+            entity.DoHide(false);
+            entity.DoTrans(false);
+        }
+
+        mHitObj = null;
+        mSelectedPart = null;
+    }
+
+    PartEntity GetSelectedEntity()
+    {
+        foreach (var entity in mParts)
+        {
+            if (entity.mIsSelected)
+                return entity;
+        }
+        return null;
+    }
 
     private void OnEnable()
     {
         kAssemTog.isOn = true;
     }
 
+    private void OnDisable()
+    {
+        DoReset();
+    }
+
     int layer = 1 << 6;
     Ray mRay;
     RaycastHit mHit;
-    GameObject mSelectedObj;
+    GameObject mHitObj;
     PartEntity mSelectedPart;
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            mRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(mRay, out mHit, 1000, layer))
+            {
+                mHitObj = mHit.collider.gameObject;
+            }
+        }
         if (Input.GetMouseButtonUp(0))
         {
             mRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(mRay, out mHit, 1000, layer))
             {
-                if (mSelectedPart != null)
+                if(mHit.collider.gameObject == mHitObj)
                 {
-                    Debug.Log(mSelectedPart.mPartName + " 取消选中");
-                    mSelectedPart.DoSelect(false);
+                    if (mSelectedPart != null)
+                    {
+                        Debug.Log(mSelectedPart.mPartName + " 取消选中");
+                        mSelectedPart.DoSelect(false);
+                    }
+
+                    mHitObj = mHit.collider.gameObject;
+                    mSelectedPart = mHitObj.GetComponent<PartEntity>();
+
+
+                    Debug.Log("mSelectedObj: " + mHitObj.name);
+                    mSelectedPart.DoSelect(true, true);
                 }
-
-                mSelectedObj = mHit.collider.gameObject;
-                mSelectedPart = mSelectedObj.GetComponent<PartEntity>();
-
-
-                Debug.Log("mSelectedObj: " + mSelectedObj.name);
-                mSelectedPart.DoSelect(true, true);
-            }
-            else
-            {
-                //if (mSelectedPart != null)
-                //{
-                //    mSelectedPart.DoSelect(false);
-                //    mSelectedObj = null;
-                //    mSelectedPart = null;
-                //}
             }
         }
     }

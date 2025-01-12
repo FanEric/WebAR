@@ -16,13 +16,18 @@ public class ItemTipsMng : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    public void Show(GameObject part)
+    public void Show(GameObject part, string pname)
     {
-        kTxt.text = part.name;
+        kTxt.text = pname;
         transform.parent.SetParent(part.transform, true);
         Bounds bounds = part.GetComponent<MeshCollider>().bounds;
         Vector3 size = bounds.size;
         transform.position = bounds.center + new Vector3(0, size.y / 2f + .1f, 0);
+    }
+
+    public void Hide()
+    {
+        transform.position = new Vector3(0, 0, -1000);
     }
 
     public void SetPartName(string partName)

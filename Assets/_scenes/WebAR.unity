@@ -1932,6 +1932,7 @@ GameObject:
   - component: {fileID: 527182977}
   - component: {fileID: 527182976}
   - component: {fileID: 527182978}
+  - component: {fileID: 527182979}
   m_Layer: 5
   m_Name: Bottom
   m_TagString: Untagged
@@ -2011,6 +2012,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
+--- !u!225 &527182979
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527182974}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &536351380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2143,7 +2156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9046953114715177046, guid: 8e642025b369d424aa87ee6230c3b390, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9046953114715177047, guid: 8e642025b369d424aa87ee6230c3b390, type: 3}
       propertyPath: m_RootOrder
@@ -3951,7 +3964,7 @@ GameObject:
   - component: {fileID: 1049337690}
   - component: {fileID: 1049337691}
   m_Layer: 5
-  m_Name: TransTog (1)
+  m_Name: HideTog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4018,7 +4031,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1204449083}
+  m_TargetGraphic: {fileID: 1628873039}
   toggleTransition: 1
   graphic: {fileID: 1204449083}
   m_Group: {fileID: 0}
@@ -6495,7 +6508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3952645379547529895, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3952645379547529895, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_TagString
@@ -7301,7 +7314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1782086055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7340,6 +7353,13 @@ MonoBehaviour:
   kDisassTog: {fileID: 2028902038}
   kArrowAnim: {fileID: 1417739292}
   kArrowTog: {fileID: 8693970368407853679}
+  kTransTog: {fileID: 2204856841122521154}
+  kHideTog: {fileID: 1049337691}
+  kMonoTog: {fileID: 3993384875328798441}
+  kResetBtn: {fileID: 11469997}
+  kManiScript: {fileID: 1310778119401607918}
+  kToggleGroup: {fileID: 1206839033}
+  kAssemTogCG: {fileID: 527182979}
   kPartContent: {fileID: 1206839029}
 --- !u!114 &1782086057
 MonoBehaviour:
@@ -7775,7 +7795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3952645379547529895, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3952645379547529895, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_TagString
@@ -8871,7 +8891,7 @@ MonoBehaviour:
   kSld: {fileID: 275698553}
   kTransRate: 0.001
   rotateSpeedX: 8
-  rotateSpeedY: 4
+  rotateSpeedY: 2
   rotateDelta: 8
   mouseX: 0
   mouseY: 0
@@ -9023,7 +9043,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 6292832078068712960}
+  m_TargetGraphic: {fileID: 6963806152834125632}
   toggleTransition: 1
   graphic: {fileID: 6292832078068712960}
   m_Group: {fileID: 0}

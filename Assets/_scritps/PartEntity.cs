@@ -20,7 +20,6 @@ public class PartEntity : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameObject.name = mPartName;
         mHighlighter = GetComponent<Highlighter>();
         GetInitMat();
     }
@@ -41,8 +40,16 @@ public class PartEntity : MonoBehaviour
     public void DoSelect(bool isSelected, bool expandAction = false)
     {
         mIsSelected = isSelected;
+        EventDispatcher<EventDef, PartEntity>.DispatchEvent(EventDef.PartSelect, this);
 
-        ItemTipsMng.Instance.Show(gameObject);
+        if (isSelected)
+        {
+            ItemTipsMng.Instance.Show(gameObject, mPartName);
+        }
+        else
+        {
+            ItemTipsMng.Instance.Hide();
+        }
 
         DoFlashing(mIsSelected);
 
@@ -76,11 +83,13 @@ public class PartEntity : MonoBehaviour
                 item.materials = mRenderMats[item];
             }
         }
+        mItem.DoHideOrTrans(mIsTransparent || mIsHided);
     }
 
     public void DoHide(bool isHided)
     {
         mIsHided = isHided;
         gameObject.SetActive(!mIsHided);
+        mItem.DoHideOrTrans(mIsTransparent || mIsHided);
     }
 }

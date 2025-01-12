@@ -372,6 +372,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 195974183}
   m_CullTransparentMesh: 1
+--- !u!1 &242229931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3952645379547529895, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
+  m_PrefabInstance: {fileID: 1710175242}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &329920820
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,6 +911,37 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 4187212778373228431, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
   m_PrefabInstance: {fileID: 1710175242}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1152311639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242229931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad3a2c911d3aebc4e893fe15de84751c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kSldVale: {fileID: 0}
+  kSld: {fileID: 0}
+  kTransRate: 0.001
+  rotateSpeedX: 4
+  rotateSpeedY: 2
+  rotateDelta: 5
+  mouseX: 0
+  mouseY: 60
+  angleMax: 90
+  angleMin: -90
+  panSpeed: 5
+  doTranslate: 0
+  doRotate: 1
+  doScale: 0
+  scaleRate: 5
+  scaleMin: 0.1
+  scaleMax: 5
+  eventSystem: {fileID: 1549310096}
+  graphicRaycaster: {fileID: 1051599160}
 --- !u!1 &1325269702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,6 +1609,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3952645379547529895, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1152311639}
     - targetCorrespondingSourceObject: {fileID: 6304518849736312832, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1720273651}
