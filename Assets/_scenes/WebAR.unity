@@ -1796,6 +1796,8 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
+  mPosY: 0
+  mPosZ: 0
 --- !u!1 &476186823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,15 +2166,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9046953114715177047, guid: 8e642025b369d424aa87ee6230c3b390, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9046953114715177047, guid: 8e642025b369d424aa87ee6230c3b390, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9046953114715177047, guid: 8e642025b369d424aa87ee6230c3b390, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9046953114715177047, guid: 8e642025b369d424aa87ee6230c3b390, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2543,6 +2545,8 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
+  mPosY: 0
+  mPosZ: 0
 --- !u!1 &667980346
 GameObject:
   m_ObjectHideFlags: 0
@@ -4941,6 +4945,8 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
+  mPosY: 0
+  mPosZ: 0
 --- !u!1 &1416523385
 GameObject:
   m_ObjectHideFlags: 0
@@ -6065,6 +6071,8 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
+  mPosY: 0
+  mPosZ: 0
 --- !u!114 &1668416659 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1014446899312122248, guid: f0ac17aba4adce94eb299888f6316425, type: 3}
@@ -6508,7 +6516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3952645379547529895, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3952645379547529895, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_TagString
@@ -6524,19 +6532,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4436413605385426973, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4436413605385426973, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4436413605385426973, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4436413605385426973, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: -1.286259
       objectReference: {fileID: 0}
     - target: {fileID: 4436413605385426973, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6816,6 +6824,8 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
+  mPosY: 0
+  mPosZ: 0
 --- !u!1 &1725264374
 GameObject:
   m_ObjectHideFlags: 0
@@ -7811,15 +7821,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4436413605385426973, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4436413605385426973, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4436413605385426973, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4436413605385426973, guid: e10f6807c32effb4ba409c161fb766f0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8086,6 +8096,8 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
+  mPosY: 0
+  mPosZ: 0
 --- !u!114 &2024818263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8103,6 +8115,8 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
+  mPosY: 0
+  mPosZ: 0
 --- !u!114 &2024818266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8120,6 +8134,8 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
+  mPosY: 0
+  mPosZ: 0
 --- !u!114 &2024818268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8137,6 +8153,8 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
+  mPosY: 0
+  mPosZ: 0
 --- !u!1 &2027795903
 GameObject:
   m_ObjectHideFlags: 0
@@ -8315,6 +8333,8 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
+  mPosY: 0
+  mPosZ: 0
 --- !u!1 &2105685625 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3601481113313182789, guid: fa7648a13ea4b46a2a7a98b0b3f96889, type: 3}
@@ -8897,7 +8917,7 @@ MonoBehaviour:
   mouseY: 0
   angleMax: 90
   angleMin: -90
-  panSpeed: 0.4
+  panSpeed: 3.6
   doTranslate: 1
   doRotate: 0
   doScale: 0
@@ -10220,7 +10240,7 @@ Transform:
   m_GameObject: {fileID: 7810229143781186441}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

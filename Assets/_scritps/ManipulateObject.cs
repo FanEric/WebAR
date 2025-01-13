@@ -66,7 +66,7 @@ public class ManipulateObject : MonoBehaviour
 
     void HandleMouse()
     {
-        if (CheckMouseOnUI()) return;
+        //if (CheckMouseOnUI()) return;
         if (doTranslate && Input.GetMouseButton(0))
         {
             mTrans.Translate(Vector3.right * Input.GetAxis("Mouse X") * Time.fixedDeltaTime * panSpeed, Space.World);

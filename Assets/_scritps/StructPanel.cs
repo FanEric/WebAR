@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class StructPanel : MonoBehaviour
 {
+    public static StructPanel Instance;
     private Animator mPartAnim;
     public Toggle kAssemTog;
     public Toggle kDisassTog;
@@ -18,8 +19,16 @@ public class StructPanel : MonoBehaviour
     public CanvasGroup kAssemTogCG;
 
     public Transform kPartContent;
+    public Transform kPartParent;
 
     private List<PartEntity> mParts = new List<PartEntity>();
+
+    public bool IsMono { get { return kMonoTog.isOn; } }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -45,6 +54,7 @@ public class StructPanel : MonoBehaviour
         }
         kDisassTog.onValueChanged.AddListener(isOn =>
         {
+            kManiScript.DoReset();
             if (isOn) mPartAnim?.SetInteger("DoAssem", 1);
         });
         kAssemTog.onValueChanged.AddListener(isOn =>
@@ -115,6 +125,10 @@ public class StructPanel : MonoBehaviour
 
     void DoMono(PartEntity selected)
     {
+        selected.OnMono();
+        Vector3 localPos = selected.transform.localPosition;
+        kPartParent = selected.transform.parent;
+        kPartParent.localPosition = new Vector3(-localPos.x, -selected.mPosY, selected.mPosZ);
         kManiScript.DoReset();
         foreach (var entity in mParts)
         { 
@@ -124,12 +138,7 @@ public class StructPanel : MonoBehaviour
 
     void UndoMono()
     {
-        kAssemTog.isOn = true;
-        kManiScript.DoReset();
-        foreach (var entity in mParts)
-        {
-            entity.DoHide(false);
-        }
+        DoReset();
     }
 
     public void DoReset()
@@ -137,6 +146,7 @@ public class StructPanel : MonoBehaviour
         kAssemTog.isOn = true;
         kToggleGroup.allowSwitchOff = true;
         kManiScript.DoReset();
+        kMonoTog.isOn = false;
 
         foreach (var entity in mParts)
         {
@@ -144,7 +154,8 @@ public class StructPanel : MonoBehaviour
             entity.DoHide(false);
             entity.DoTrans(false);
         }
-
+        if(kPartParent != null)
+            kPartParent.localPosition = Vector3.zero;
         mHitObj = null;
         mSelectedPart = null;
     }

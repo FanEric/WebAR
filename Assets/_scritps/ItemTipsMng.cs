@@ -9,6 +9,9 @@ public class ItemTipsMng : MonoBehaviour
     private Transform mtr;
     private Camera mainCamera;
     public Text kTxt;
+    public float modelScreenHeight;
+    public float scaleRatio;
+
     private void Awake()
     {
         Instance = this;
@@ -22,7 +25,7 @@ public class ItemTipsMng : MonoBehaviour
         transform.parent.SetParent(part.transform, true);
         Bounds bounds = part.GetComponent<MeshCollider>().bounds;
         Vector3 size = bounds.size;
-        transform.position = bounds.center + new Vector3(0, size.y / 2f + .1f, 0);
+        transform.position = bounds.center + new Vector3(0, size.y / 2f + 1f, 0);
     }
 
     public void Hide()
@@ -44,10 +47,10 @@ public class ItemTipsMng : MonoBehaviour
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
 
         // 计算模型在屏幕上的高度
-        float modelScreenHeight = Mathf.Abs((screenPos.y - Camera.main.WorldToScreenPoint(transform.position + transform.up).y));
+        modelScreenHeight = Mathf.Abs((screenPos.y - Camera.main.WorldToScreenPoint(transform.position + transform.up).y));
 
         // 计算缩放比例
-        float scaleRatio = desiredScreenHeight / modelScreenHeight;
+        scaleRatio = desiredScreenHeight / modelScreenHeight;
 
         // 设置缩放
         transform.localScale = new Vector3(scaleRatio, scaleRatio, scaleRatio);
