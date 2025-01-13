@@ -979,6 +979,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desiredScreenHeight: 1000
   kTxt: {fileID: 1725264378}
+  modelScreenHeight: 0
+  scaleRatio: 0
 --- !u!1 &240256055
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,8 +1798,7 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
-  mPosY: 0
-  mPosZ: 0
+  mModelHight: 0
 --- !u!1 &476186823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,8 +2546,7 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
-  mPosY: 0
-  mPosZ: 0
+  mModelHight: 0
 --- !u!1 &667980346
 GameObject:
   m_ObjectHideFlags: 0
@@ -4945,8 +4945,7 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
-  mPosY: 0
-  mPosZ: 0
+  mModelHight: 0
 --- !u!1 &1416523385
 GameObject:
   m_ObjectHideFlags: 0
@@ -6071,8 +6070,7 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
-  mPosY: 0
-  mPosZ: 0
+  mModelHight: 0
 --- !u!114 &1668416659 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1014446899312122248, guid: f0ac17aba4adce94eb299888f6316425, type: 3}
@@ -6824,8 +6822,7 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
-  mPosY: 0
-  mPosZ: 0
+  mModelHight: 0
 --- !u!1 &1725264374
 GameObject:
   m_ObjectHideFlags: 0
@@ -7371,6 +7368,7 @@ MonoBehaviour:
   kToggleGroup: {fileID: 1206839033}
   kAssemTogCG: {fileID: 527182979}
   kPartContent: {fileID: 1206839029}
+  kPartTransform: {fileID: 0}
 --- !u!114 &1782086057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8096,8 +8094,7 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
-  mPosY: 0
-  mPosZ: 0
+  mModelHight: 0
 --- !u!114 &2024818263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8115,8 +8112,7 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
-  mPosY: 0
-  mPosZ: 0
+  mModelHight: 0
 --- !u!114 &2024818266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8134,8 +8130,7 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
-  mPosY: 0
-  mPosZ: 0
+  mModelHight: 0
 --- !u!114 &2024818268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8153,8 +8148,7 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
-  mPosY: 0
-  mPosZ: 0
+  mModelHight: 0
 --- !u!1 &2027795903
 GameObject:
   m_ObjectHideFlags: 0
@@ -8333,8 +8327,7 @@ MonoBehaviour:
   mIsTransparent: 0
   mIsHided: 0
   kTransMat: {fileID: 2100000, guid: 9485a6b5ba05a9648b4c6567cb6c4128, type: 2}
-  mPosY: 0
-  mPosZ: 0
+  mModelHight: 0
 --- !u!1 &2105685625 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3601481113313182789, guid: fa7648a13ea4b46a2a7a98b0b3f96889, type: 3}

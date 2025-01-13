@@ -1,6 +1,7 @@
 using UnityEngine;
 using HighlightingSystem;
 using System.Collections.Generic;
+using System.Collections;
 
 public class PartEntity : MonoBehaviour
 {
@@ -16,20 +17,17 @@ public class PartEntity : MonoBehaviour
     Dictionary<Renderer, Material[]> mRenderMats = new Dictionary<Renderer, Material[]>();
 
     private PartItem mItem;
-    public float mPosY;
-    public float mPosZ;
     private Vector3 mLocalPos;
-
+    public float mModelHight;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         mHighlighter = GetComponent<Highlighter>();
         GetInitMat();
-        mPosY = transform.position.y;
         Bounds bounds = GetComponent<MeshCollider>().bounds;
         Vector3 size = bounds.size;
-        float big = size.x > size.y ? size.x : size.y;
-        mPosZ = transform.localPosition.z - 1f / big;
+        mModelHight = size.x > size.y ? size.x : size.y;
+
         mLocalPos = transform.localPosition;
     }
 
@@ -46,10 +44,18 @@ public class PartEntity : MonoBehaviour
         }
     }
 
-    public void OnMono()
+    public IEnumerator DoMono()
     {
+        yield return new WaitForEndOfFrame();
+        transform.localPosition = Vector3.zero;
+        //transform.position = Vector3.zero;
         DoFlashing(false);
         ItemTipsMng.Instance.Hide();
+    }
+
+    public void UndoMono()
+    {
+        transform.localPosition = mLocalPos;
     }
 
     public void DoSelect(bool isSelected, bool expandAction = false)

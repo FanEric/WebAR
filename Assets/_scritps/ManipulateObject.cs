@@ -54,11 +54,18 @@ public class ManipulateObject : MonoBehaviour
     }
 
 
-    public void DoReset()
+    public void DoReset(PartEntity entity = null)
     {
         if (mTrans != null)
         {
-            mTrans.position = Vector3.zero;
+            if(entity != null)
+            {
+                mTrans.position = new Vector3(0, 0, -1.5f / entity.mModelHight);
+            }
+            else
+            {
+                mTrans.position = Vector3.zero;
+            }
             mTrans.rotation = Quaternion.identity;
             mTrans.localScale = Vector3.one;
         }

@@ -19,7 +19,7 @@ public class StructPanel : MonoBehaviour
     public CanvasGroup kAssemTogCG;
 
     public Transform kPartContent;
-    public Transform kPartParent;
+    public Transform kPartTransform;
 
     private List<PartEntity> mParts = new List<PartEntity>();
 
@@ -34,7 +34,8 @@ public class StructPanel : MonoBehaviour
     {
         GameObject structObj = GameObject.FindGameObjectWithTag("Struct");
         if (structObj != null)
-        { 
+        {
+            kPartTransform = structObj.transform;
             mPartAnim = structObj.GetComponent<Animator>();
             int itemCount = kPartContent.childCount;
             Transform trans = structObj.transform;
@@ -93,7 +94,7 @@ public class StructPanel : MonoBehaviour
             }
             else
             {
-                UndoMono();
+                UndoMono(entity);
             }
         });
 
@@ -107,13 +108,13 @@ public class StructPanel : MonoBehaviour
             }
             else
             {
+                entity.UndoMono();
                 kTransTog.isOn = false;
                 kHideTog.isOn = false;
             }
         });
 
         kResetBtn.onClick.AddListener(DoReset);
-
     }
 
     void SetGroupInter(bool toInter)
@@ -125,20 +126,18 @@ public class StructPanel : MonoBehaviour
 
     void DoMono(PartEntity selected)
     {
-        selected.OnMono();
-        Vector3 localPos = selected.transform.localPosition;
-        kPartParent = selected.transform.parent;
-        kPartParent.localPosition = new Vector3(-localPos.x, -selected.mPosY, selected.mPosZ);
-        kManiScript.DoReset();
+        StartCoroutine(selected.DoMono());
+        kManiScript.DoReset(selected);
         foreach (var entity in mParts)
         { 
             entity.DoHide(entity != selected);
         }
     }
 
-    void UndoMono()
+    void UndoMono(PartEntity selected)
     {
         DoReset();
+        selected?.UndoMono();
     }
 
     public void DoReset()
@@ -154,8 +153,7 @@ public class StructPanel : MonoBehaviour
             entity.DoHide(false);
             entity.DoTrans(false);
         }
-        if(kPartParent != null)
-            kPartParent.localPosition = Vector3.zero;
+        
         mHitObj = null;
         mSelectedPart = null;
     }
