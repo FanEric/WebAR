@@ -126,6 +126,7 @@ public class StructPanel : MonoBehaviour
 
     void DoMono(PartEntity selected)
     {
+        mPartAnim.enabled = false;
         StartCoroutine(selected.DoMono());
         kManiScript.DoReset(selected);
         foreach (var entity in mParts)
@@ -138,6 +139,7 @@ public class StructPanel : MonoBehaviour
     {
         DoReset();
         selected?.UndoMono();
+        mPartAnim.enabled = true;
     }
 
     public void DoReset()

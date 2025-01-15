@@ -48,7 +48,8 @@ public class PartEntity : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         transform.localPosition = Vector3.zero;
-        //transform.position = Vector3.zero;
+        yield return new WaitForEndOfFrame();
+        transform.localPosition = Vector3.zero;
         DoFlashing(false);
         ItemTipsMng.Instance.Hide();
     }
