@@ -12,10 +12,13 @@ public class FToggle : MonoBehaviour
     private void Awake()
     {
         toggle = GetComponent<Toggle>();
-        toggle.onValueChanged.AddListener(isOn => { 
-            kOnImg.SetActive(isOn);
-            kOffImg.SetActive(!isOn);
-        });
+        if(kOnImg != null && kOffImg != null)
+        {
+            toggle.onValueChanged.AddListener(isOn => {
+                kOnImg?.SetActive(isOn);
+                kOffImg?.SetActive(!isOn);
+            });
+        }
     }
 
     private void OnEnable()

@@ -218,8 +218,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u4E92\u52A8\u9605\u89C8"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 557f2f3d889acc24e931ea16d76f42d8, type: 2}
-  m_sharedMaterial: {fileID: 1974489390987200527, guid: 557f2f3d889acc24e931ea16d76f42d8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8e420fc540e252d4cb80528114855a48, type: 2}
+  m_sharedMaterial: {fileID: -5567211546642291873, guid: 8e420fc540e252d4cb80528114855a48, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

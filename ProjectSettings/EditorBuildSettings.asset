@@ -9,3 +9,4 @@ EditorBuildSettings:
     path: Assets/_scenes/WebAR.unity
     guid: e13089de4a5f29d48961fbe9d6714c9d
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

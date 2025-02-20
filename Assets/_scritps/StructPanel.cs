@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class StructPanel : MonoBehaviour
@@ -7,7 +8,6 @@ public class StructPanel : MonoBehaviour
     public static StructPanel Instance;
     private Animator mPartAnim;
     public Toggle kAssemTog;
-    public Toggle kDisassTog;
     public Animator kArrowAnim;
     public Toggle kArrowTog;
     public Toggle kTransTog;
@@ -19,7 +19,8 @@ public class StructPanel : MonoBehaviour
     public CanvasGroup kAssemTogCG;
 
     public Transform kPartContent;
-    public Transform kPartTransform;
+    private Transform kPartTransform;
+    public GameObject k3DUIObj;
 
     private List<PartEntity> mParts = new List<PartEntity>();
 
@@ -32,6 +33,7 @@ public class StructPanel : MonoBehaviour
 
     void Start()
     {
+        kArrowAnim.SetBool("toPand", false);
         GameObject structObj = GameObject.FindGameObjectWithTag("Struct");
         if (structObj != null)
         {
@@ -53,14 +55,23 @@ public class StructPanel : MonoBehaviour
                 }
             }
         }
-        kDisassTog.onValueChanged.AddListener(isOn =>
-        {
-            kManiScript.DoReset();
-            if (isOn) mPartAnim?.SetInteger("DoAssem", 1);
-        });
+        
         kAssemTog.onValueChanged.AddListener(isOn =>
         {
-            if (isOn) mPartAnim?.SetInteger("DoAssem", 2);
+            kArrowTog.isOn = false;
+            if (isOn)
+            {
+                HideAll3DUI();
+                mPartAnim?.SetInteger("DoAssem", 2);
+            }
+            else
+            {
+                PartEntity entity = GetSelectedEntity();
+                entity?.DoSelect(false, true);
+                kManiScript.DoReset();
+                mPartAnim?.SetInteger("DoAssem", 1);
+                Invoke("ShowAll3DUI", 2);
+            }
         });
         kArrowTog.onValueChanged.AddListener(isOn => 
         {
@@ -84,6 +95,7 @@ public class StructPanel : MonoBehaviour
         });
 
         kMonoTog.onValueChanged.AddListener(isOn => {
+            kArrowTog.isOn = false;
             PartEntity entity = GetSelectedEntity();
             kToggleGroup.allowSwitchOff = !isOn;
             SetGroupInter(!isOn);
@@ -99,6 +111,7 @@ public class StructPanel : MonoBehaviour
         });
 
         EventDispatcher<EventDef, PartEntity>.AddListener(EventDef.PartSelect, (entity) => {
+            HideAll3DUI();
             if (entity.mIsSelected)
             {
                 if (kMonoTog.isOn)
@@ -116,6 +129,20 @@ public class StructPanel : MonoBehaviour
 
         kResetBtn.onClick.AddListener(DoReset);
     }
+
+    void ShowAll3DUI()
+    {
+        foreach (var item in mParts)
+            item.Show3DUI();
+    }
+
+    void HideAll3DUI()
+    {
+        foreach (var item in mParts)
+            item.Hide3DUI();
+    }
+
+
 
     void SetGroupInter(bool toInter)
     {
@@ -148,6 +175,7 @@ public class StructPanel : MonoBehaviour
         kToggleGroup.allowSwitchOff = true;
         kManiScript.DoReset();
         kMonoTog.isOn = false;
+        kArrowTog.isOn = false;
 
         foreach (var entity in mParts)
         {
@@ -184,10 +212,14 @@ public class StructPanel : MonoBehaviour
     Ray mRay;
     RaycastHit mHit;
     GameObject mHitObj;
+    GameObject mLastHitObj;
     PartEntity mSelectedPart;
+    public EventSystem eventSystem;
+    public GraphicRaycaster graphicRaycaster;
 
     private void Update()
     {
+        if (CheckMouseOnUI()) return;
         if (Input.GetMouseButtonDown(0))
         {
             mRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -203,20 +235,42 @@ public class StructPanel : MonoBehaviour
             {
                 if(mHit.collider.gameObject == mHitObj)
                 {
+                    HideAll3DUI();
                     if (mSelectedPart != null)
                     {
                         Debug.Log(mSelectedPart.mPartName + " 取消选中");
-                        mSelectedPart.DoSelect(false);
+                        mSelectedPart.DoSelect(false, true);
                     }
 
-                    mHitObj = mHit.collider.gameObject;
-                    mSelectedPart = mHitObj.GetComponent<PartEntity>();
+                    if(mLastHitObj !=  mHitObj)
+                    {
+                        mHitObj = mHit.collider.gameObject;
+                        mSelectedPart = mHitObj.GetComponent<PartEntity>();
 
-
-                    Debug.Log("mSelectedObj: " + mHitObj.name);
-                    mSelectedPart.DoSelect(true, true);
+                        Debug.Log("mSelectedObj: " + mHitObj.name);
+                        mSelectedPart.DoSelect(true, true);
+                        mLastHitObj = mHitObj;
+                    }
+                    else
+                    {
+                        mSelectedPart = null;
+                        mLastHitObj = null;
+                        mHitObj = null;
+                    }
                 }
             }
         }
     }
+
+
+    bool CheckMouseOnUI()
+    {
+        PointerEventData eventData = new PointerEventData(eventSystem);
+        eventData.pressPosition = Input.mousePosition;
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> list = new List<RaycastResult>();
+        graphicRaycaster.Raycast(eventData, list);
+        return list.Count > 0;
+    }
+
 }

@@ -92,22 +92,22 @@ namespace Imagine.WebAR
 
 
             Application.targetFrameRate = (int)this.trackerSettings.targetFrameRate;
-            
+
 
 #if !UNITY_EDITOR && UNITY_WEBGL
-            // while (!IsWebGLiTrackerReady())
-            // {
-            //     Debug.Log("waiting for tracker ready");
-            //     yield return new WaitForSeconds(0.1f);
-            // }
+             while (!IsWebGLiTrackerReady())
+             {
+                 Debug.Log("waiting for tracker ready");
+                 yield return new WaitForSeconds(0.1f);
+             }
 
-            //StartWebGLiTracker(serializedIds, name);
+            StartWebGLiTracker(serializedIds, name);
             Debug.Log(trackerSettings.Serialize());
             SetWebGLiTrackerSettings(trackerSettings.Serialize());
 
 #endif
 
-            if( trackerOrigin == TrackerOrigin.FIRST_TARGET_ORIGIN && trackerSettings.maxSimultaneousTargets > 1){
+            if ( trackerOrigin == TrackerOrigin.FIRST_TARGET_ORIGIN && trackerSettings.maxSimultaneousTargets > 1){
                 dummyCamTransform = (new GameObject("Dummy Cam Transform")).transform;
             }
 

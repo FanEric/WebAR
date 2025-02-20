@@ -37,6 +37,7 @@ public class ManipulateObject : MonoBehaviour
     private Quaternion desiredRotation;
     public EventSystem eventSystem;
     public GraphicRaycaster graphicRaycaster;
+    public bool canOperate = true;
 
     private void Awake()
     {
@@ -73,7 +74,8 @@ public class ManipulateObject : MonoBehaviour
 
     void HandleMouse()
     {
-        //if (CheckMouseOnUI()) return;
+        if (!canOperate) return;
+        if (CheckMouseOnUI()) return;
         if (doTranslate && Input.GetMouseButton(0))
         {
             mTrans.Translate(Vector3.right * Input.GetAxis("Mouse X") * Time.fixedDeltaTime * panSpeed, Space.World);
@@ -178,6 +180,26 @@ public class ManipulateObject : MonoBehaviour
 
         HandleMouse();
 
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            doTranslate = true;
+            doRotate = false;
+            doScale = false;
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            doTranslate = false;
+            doRotate = true;
+            doScale = false;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            doTranslate = false;
+            doRotate = false;
+            doScale = true;
+        }
+#endif
         //HandleTouch();
     }
 

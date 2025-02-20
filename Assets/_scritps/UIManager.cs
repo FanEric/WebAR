@@ -3,11 +3,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
     string[] structIDs = { "水粉混合器" };
-    string[] assemblyIDs = { "混合器" };
+    string[] assemblyIDs = { "减速机构" };
 
     public Toggle kBrowseTog;
     public Toggle kInterTog;
@@ -31,11 +32,14 @@ public class UIManager : MonoBehaviour
 
     public GameObject kStructPanel;
     public GameObject kAssemblyPanel;
-    public GameObject kTestObj;
-    string mCurTrackedId;
+    public GameObject kTestObj1;
+    public GameObject kTestObj2;
+
+    public AudioSource kAudioSource;
     // Start is called before the first frame update
     void Start()
     {
+        //DataSet.instance.GetAssembleData("减速机构");
         kBrowseTog.onValueChanged.AddListener(ToBrowse);
         kInterTog.onValueChanged.AddListener(ToInter);
         kVoiceTog.onValueChanged.AddListener(ToVoice);
@@ -45,7 +49,8 @@ public class UIManager : MonoBehaviour
         kTracker.OnImageFound.AddListener(str => { 
             DoImageFound(); 
             DoReset();
-            kTitle.text = mCurTrackedId = str;
+            kTitle.text = GlobalData.CurTrackedId = str;
+            kAudioSource.clip = DataSet.instance.audios[GlobalData.CurTrackedId][0];
         });
         kCamTog.onValueChanged.AddListener(isOn =>
         {
@@ -59,6 +64,8 @@ public class UIManager : MonoBehaviour
         kScanPanel.SetActive(false);
         kMenuPanel.SetActive(false);
         kTransPanel.SetActive(false);
+
+        BeginScan();
     }
 
     private void Update()
@@ -67,17 +74,37 @@ public class UIManager : MonoBehaviour
         {
             TestStruct();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            TestAssemble();
+        }
     }
 
     void TestStruct()
     {
-        kTestObj.SetActive(true );
+        GlobalData.CurTrackedId = Const.SFHEQ;
+        kTestObj1.SetActive(true );
         //kInterTog.isOn = true;
-        kTestObj.transform.GetChild(0).gameObject.SetActive(false);
-        kTestObj.transform.GetChild(1).gameObject.SetActive(true);
+        kTestObj1.transform.GetChild(0).gameObject.SetActive(false);
+        kTestObj1.transform.GetChild(1).gameObject.SetActive(true);
         kStructPanel.SetActive(true);
         kMenuPanel.SetActive(true);
         kTransPanel.SetActive(true);
+        kScanPanel.SetActive(false);
+    }
+
+    void TestAssemble()
+    {
+        GlobalData.CurTrackedId = Const.JSJG;
+        Debug.Log("kTestObj2 == null: " + kTestObj2 == null);
+        kTestObj2.SetActive(true);
+        //kInterTog.isOn = true;
+        kTestObj2.transform.GetChild(0).gameObject.SetActive(false);
+        kTestObj2.transform.GetChild(1).gameObject.SetActive(true);
+        kAssemblyPanel.SetActive(true);
+        kMenuPanel.SetActive(true);
+        kTransPanel.SetActive(true);
+        kScanPanel.SetActive(false);
     }
 
     void BeginScan()
@@ -100,40 +127,50 @@ public class UIManager : MonoBehaviour
 
     void DoHome()
     {
-        kMainPanel.SetActive(true);
-        kScanPanel.SetActive(false);
+        kMainPanel.SetActive(false);
+        kScanPanel.SetActive(true);
         kMenuPanel.SetActive(false);
         kTransPanel.SetActive(false);
 
         DoReset();
         kTracker.DoReset();
+
+        BeginScan();
+
     }
 
     void ToBrowse(bool isOn)
     {
+        if (string.IsNullOrEmpty(GlobalData.CurTrackedId)) return;
         if(isOn)
         {
             kManiScript.DoReset();
             kTracker.SetTargetChildEnable(0);
+            kVoiceTog.isOn = false;
+            kAudioSource.clip = DataSet.instance.audios[GlobalData.CurTrackedId][0];
         }
     }
 
     void ToInter(bool isOn)
     {
+        if (string.IsNullOrEmpty(GlobalData.CurTrackedId)) return;
         if (isOn)
         {
             kTracker.SetTargetChildEnable(1);
             kManiScript.DoReset();
 
-            Debug.Log("structIDs.Contains(mCurTrackedId): " + mCurTrackedId + "--" + structIDs.Contains(mCurTrackedId));
-            if (structIDs.Contains(mCurTrackedId))
+            if (structIDs.Contains(GlobalData.CurTrackedId))
             {
                 kStructPanel.SetActive(true);
+                Debug.Log("结构展示： " + GlobalData.CurTrackedId);
             }
-            else if (assemblyIDs.Contains(mCurTrackedId))
+            else if (assemblyIDs.Contains(GlobalData.CurTrackedId))
             {
+                Debug.Log("拆装： " + GlobalData.CurTrackedId);
                 kAssemblyPanel.SetActive(true);
             }
+            kVoiceTog.isOn = false;
+            kAudioSource.clip = DataSet.instance.audios[GlobalData.CurTrackedId][1];
         }
         else
         { 
@@ -144,24 +181,33 @@ public class UIManager : MonoBehaviour
 
     void ToVoice(bool isOn)
     {
+        if (string.IsNullOrEmpty(GlobalData.CurTrackedId)) return;
         if (isOn)
         {
-            kTracker.SetTargetChildEnable(2);
-            kManiScript.DoReset();
+            kAudioSource.Play();
+            //kTracker.SetTargetChildEnable(2);
+            //kManiScript.DoReset();
 
-            kManiScript.doTranslate = false;
-            kManiScript.doRotate = false;
-            kManiScript.doScale = false;
+            //kManiScript.doTranslate = false;
+            //kManiScript.doRotate = false;
+            //kManiScript.doScale = false;
+        }
+        else
+        {
+            kAudioSource.Stop();
         }
     }
 
     void DoReset()
     {
-        mCurTrackedId = "";
+        Debug.Log("DoReset");
+        GlobalData.CurTrackedId = "";
         kStructPanel.SetActive(false);
         kAssemblyPanel.SetActive(false);
         kBGPlane.SetActive(false);
         kBrowseTog.isOn = true;
         kManiScript.DoReset();
+
+        kVoiceTog.isOn = false;
     }
 }

@@ -10,32 +10,43 @@ public class PartEntity : MonoBehaviour
     public bool mIsTransparent;
     public bool mIsHided;
 
-    public Material kTransMat;
-    Material[] mTransMat = new Material[1];
-    Highlighter mHighlighter;
+    HighlightingSystem.Highlighter mHighlighter;
     Renderer[] mAllRenders;
     Dictionary<Renderer, Material[]> mRenderMats = new Dictionary<Renderer, Material[]>();
 
     private PartItem mItem;
     private Vector3 mLocalPos;
     public float mModelHight;
+
+    private Part3DUI mPart3DUI;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        mHighlighter = GetComponent<Highlighter>();
+        mHighlighter = GetComponent<HighlightingSystem.Highlighter>();
         GetInitMat();
         Bounds bounds = GetComponent<MeshCollider>().bounds;
         Vector3 size = bounds.size;
         mModelHight = size.x > size.y ? size.x : size.y;
 
         mLocalPos = transform.localPosition;
+
+        Init3DUI();
     }
+
+    void Init3DUI()
+    {
+        mPart3DUI = Instantiate(StructPanel.Instance.k3DUIObj).GetComponent<Part3DUI>();
+        mPart3DUI.SetData(mPartName, transform);
+        mPart3DUI.Hide();
+    }
+
+    public void Show3DUI() { mPart3DUI.Show(); }
+    public void Hide3DUI() { mPart3DUI?.Hide(); }
 
     public void SetItem(PartItem item) { mItem = item; }
 
     void GetInitMat()
     {
-        mTransMat[0] = kTransMat;
         mAllRenders = GetComponentsInChildren<Renderer>();
         //Debug.Log(mPartName + " :" + mAllRenders.Length);
         foreach (var item in mAllRenders)
@@ -51,7 +62,7 @@ public class PartEntity : MonoBehaviour
         yield return new WaitForEndOfFrame();
         transform.localPosition = Vector3.zero;
         DoFlashing(false);
-        ItemTipsMng.Instance.Hide();
+        mPart3DUI.Hide();
     }
 
     public void UndoMono()
@@ -67,17 +78,17 @@ public class PartEntity : MonoBehaviour
         if(StructPanel.Instance.IsMono)
         {
             DoFlashing(false);
-            ItemTipsMng.Instance.Hide();
+            mPart3DUI.Hide();
             return;
         }
 
         if (isSelected)
         {
-            ItemTipsMng.Instance.Show(gameObject, mPartName);
+            mPart3DUI.Show();
         }
         else
         {
-            ItemTipsMng.Instance.Hide();
+            mPart3DUI.Hide();
         }
 
         DoFlashing(mIsSelected);
@@ -99,10 +110,9 @@ public class PartEntity : MonoBehaviour
         mIsTransparent = isTrans;
         if (mIsTransparent)
         {
-            Material[] materials = { kTransMat };
             foreach (var item in mAllRenders)
             {
-                item.materials = materials;
+                item.materials = DataSet.instance.kTransMats;
             }
         }
         else
