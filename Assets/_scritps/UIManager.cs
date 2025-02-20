@@ -7,8 +7,8 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-    string[] structIDs = { "水粉混合器" };
-    string[] assemblyIDs = { "减速机构" };
+    string[] structIDs = { Const.SFHEQ, Const.DQXT, Const.DCRGLXT };
+    string[] assemblyIDs = { Const.JSJG };
 
     public Toggle kBrowseTog;
     public Toggle kInterTog;
@@ -34,6 +34,8 @@ public class UIManager : MonoBehaviour
     public GameObject kAssemblyPanel;
     public GameObject kTestObj1;
     public GameObject kTestObj2;
+    public GameObject kTestObj3;
+    public GameObject kTestObj4;
 
     public AudioSource kAudioSource;
     // Start is called before the first frame update
@@ -72,19 +74,42 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            TestStruct();
+            Test(Const.SFHEQ, kTestObj1,true);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            TestAssemble();
+            Test(Const.JSJG, kTestObj2,false);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Test(Const.DQXT, kTestObj3, true);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Test(Const.DQXT, kTestObj4, true);
+        }
+    }
+
+    void Test(string id, GameObject obj, bool isSturct)
+    {
+        GlobalData.CurTrackedId = id;
+        obj.SetActive(true);
+        obj.transform.GetChild(0).gameObject.SetActive(false);
+        obj.transform.GetChild(1).gameObject.SetActive(true);
+        if (isSturct)
+            kStructPanel.SetActive(true);
+        else
+            kAssemblyPanel.SetActive(true);
+        kMenuPanel.SetActive(true);
+        kTransPanel.SetActive(true);
+        kScanPanel.SetActive(false);
     }
 
     void TestStruct()
     {
-        GlobalData.CurTrackedId = Const.SFHEQ;
-        kTestObj1.SetActive(true );
-        //kInterTog.isOn = true;
+
+        //GlobalData.CurTrackedId = Const.DQXT;
+        //kTestObj3.SetActive(true );
         kTestObj1.transform.GetChild(0).gameObject.SetActive(false);
         kTestObj1.transform.GetChild(1).gameObject.SetActive(true);
         kStructPanel.SetActive(true);
@@ -95,10 +120,6 @@ public class UIManager : MonoBehaviour
 
     void TestAssemble()
     {
-        GlobalData.CurTrackedId = Const.JSJG;
-        Debug.Log("kTestObj2 == null: " + kTestObj2 == null);
-        kTestObj2.SetActive(true);
-        //kInterTog.isOn = true;
         kTestObj2.transform.GetChild(0).gameObject.SetActive(false);
         kTestObj2.transform.GetChild(1).gameObject.SetActive(true);
         kAssemblyPanel.SetActive(true);

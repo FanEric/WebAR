@@ -11,7 +11,6 @@ public class DataSet : MonoBehaviour
     public AudioClip k21;
     public AudioClip k22;
     public Color kHightlightColor;
-    public Dictionary<string, Queue<string>> data = new Dictionary<string, Queue<string>>();
     public Dictionary<string, List<AudioClip>> audios = new Dictionary<string, List<AudioClip>>();
     public Material[] kTransMats;
 
@@ -20,15 +19,10 @@ public class DataSet : MonoBehaviour
     {
         instance = this;
 
-        Queue<string> partNames = new Queue<string>();
-        partNames.Enqueue("A");
-        partNames.Enqueue("B");
-        partNames.Enqueue("C");
-        partNames.Enqueue("D");
-        data.Add("partNames", partNames);
-
         audios.Add(Const.SFHEQ, new List<AudioClip>() { k11, k12});
         audios.Add(Const.JSJG, new List<AudioClip>() { k21, k22});
+        audios.Add(Const.DQXT, new List<AudioClip>() { k21, k22});
+        audios.Add(Const.DCRGLXT, new List<AudioClip>() { k21, k22});
     }
 
     public List<Element> GetAssembleData(string id)

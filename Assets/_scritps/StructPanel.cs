@@ -246,6 +246,8 @@ public class StructPanel : MonoBehaviour
                     {
                         mHitObj = mHit.collider.gameObject;
                         mSelectedPart = mHitObj.GetComponent<PartEntity>();
+                        if(mSelectedPart == null)
+                            mSelectedPart = mHitObj.transform.parent.GetComponent<PartEntity>();
 
                         Debug.Log("mSelectedObj: " + mHitObj.name);
                         mSelectedPart.DoSelect(true, true);

@@ -9,18 +9,14 @@ public class Part3DUI : MonoBehaviour
     public Text kTxt;
     private Transform mRoot;
 
-    public string pname = "peiyeguan";
-
-    //private void Start()
-    //{
-    //    GameObject obj = GameObject.Find(pname);
-    //    SetData("hello", obj.transform);
-    //}
     public void SetData(string pname, Transform target)
     {
         kTxt.text = pname;
         kTarget = target;
-        Bounds bounds = kTarget.GetComponent<MeshCollider>().bounds;
+        MeshCollider collider = target.GetComponent<MeshCollider>();
+        if (collider == null)
+            collider = target.GetComponentsInChildren<MeshCollider>()[0];
+        Bounds bounds = collider.bounds;
         Vector3 size = bounds.size;
         float big = size.x > size.y ? size.x : size.y;
         height = big / desire;

@@ -24,7 +24,10 @@ public class PartEntity : MonoBehaviour
     {
         mHighlighter = GetComponent<HighlightingSystem.Highlighter>();
         GetInitMat();
-        Bounds bounds = GetComponent<MeshCollider>().bounds;
+        MeshCollider collider = GetComponent<MeshCollider>();
+        if(collider == null)
+            collider = GetComponentsInChildren<MeshCollider>()[0];
+        Bounds bounds = collider.bounds;
         Vector3 size = bounds.size;
         mModelHight = size.x > size.y ? size.x : size.y;
 
