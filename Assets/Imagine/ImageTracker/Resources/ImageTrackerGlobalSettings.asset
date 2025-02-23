@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: ImageTrackerGlobalSettings
   m_EditorClassIdentifier: 
   imageTargetInfos:
-  - id: "\u6C34\u7C89\u6DF7\u5408\u5668"
-    texture: {fileID: 2800000, guid: 51cd527e8ff5d4040a756da7cafdc9a7, type: 3}
-  - id: "\u7535\u9A71\u7CFB\u7EDF"
-    texture: {fileID: 2800000, guid: 22e6e002c40714983b84e5721851d377, type: 3}
   - id: "\u51CF\u901F\u673A\u6784"
-    texture: {fileID: 2800000, guid: ce0f31aa880f94ad6a695850f5c8762c, type: 3}
-  - id: "\u7535\u6C60\u70ED\u7BA1\u7406\u7CFB\u7EDF"
-    texture: {fileID: 2800000, guid: 39980db0759a547a5b9f3e413c7972e4, type: 3}
-  - id: "\u7A7A\u8C03\u538B\u7F29\u673A"
-    texture: {fileID: 2800000, guid: f20ab30ea787ad046b55a9837c45c9cb, type: 3}
+    texture: {fileID: 2800000, guid: 9362df39ecf960e4f8d4b6b84159a104, type: 3}
+  - id: "\u6C34\u7C89\u6DF7\u5408\u5668"
+    texture: {fileID: 2800000, guid: 1fbe77f5cd4542f4d9b7bbd516f1902a, type: 3}
   - id: "\u6C38\u78C1\u540C\u6B65\u7535\u52A8\u673A"
-    texture: {fileID: 2800000, guid: bb2ff1860fa12fe4d98994da1058415c, type: 3}
+    texture: {fileID: 2800000, guid: 8e6ffd4520c92b846b3d2ca818720bb4, type: 3}
+  - id: "\u7535\u6C60\u70ED\u7BA1\u7406\u7CFB\u7EDF"
+    texture: {fileID: 2800000, guid: 89db52373992f3542a548c7b98f8b0fa, type: 3}
+  - id: "\u7535\u9A71\u7CFB\u7EDF"
+    texture: {fileID: 2800000, guid: 6fe04450691397d409c7affed725583b, type: 3}
+  - id: "\u7A7A\u8C03\u538B\u7F29\u673A"
+    texture: {fileID: 2800000, guid: 0017d7bc07362634d94f1fcbaf049304, type: 3}
   settingsTemplates:
   - {fileID: 11400000, guid: 35c99cc7b662a46eb89cc7a32e239494, type: 2}
   - {fileID: 11400000, guid: 9cf415d375f91458483df57436950575, type: 2}
