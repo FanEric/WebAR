@@ -20,8 +20,8 @@ public class AnimatorCallbacks : MonoBehaviour
     }
     public void AnimationCompleteHandler(string name)
     {
-        mAnimator.SetInteger(AssemblyPanel.mAnimArgName, 0);
         Debug.Log($"{name} animation complete.");
+        mAnimator.SetInteger(AssemblyPanel.mAnimArgName, 0);
         OnAnimationComplete?.Invoke(name);
     }
 }

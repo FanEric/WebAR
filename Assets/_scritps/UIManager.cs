@@ -8,7 +8,7 @@ using System.Collections;
 public class UIManager : MonoBehaviour
 {
     string[] structIDs = { Const.SFHEQ, Const.DQXT, Const.DCRGLXT };
-    string[] assemblyIDs = { Const.JSJG };
+    string[] assemblyIDs = { Const.JSJG, Const.KTYSJ, Const.YCTBDDJ };
 
     public Toggle kBrowseTog;
     public Toggle kInterTog;
@@ -36,6 +36,8 @@ public class UIManager : MonoBehaviour
     public GameObject kTestObj2;
     public GameObject kTestObj3;
     public GameObject kTestObj4;
+    public GameObject kTestObj5;
+    public GameObject kTestObj6;
 
     public AudioSource kAudioSource;
     // Start is called before the first frame update
@@ -87,6 +89,14 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             Test(Const.DQXT, kTestObj4, true);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Test(Const.KTYSJ, kTestObj5, false);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            Test(Const.YCTBDDJ, kTestObj6, false);
         }
     }
 

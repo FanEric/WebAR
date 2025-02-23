@@ -111,7 +111,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1
+    path: jike
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -136,7 +136,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike001
+    path: jike/jike001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -161,7 +161,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike002
+    path: jike/jike002
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -186,7 +186,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike003
+    path: jike/jike003
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -211,7 +211,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike004
+    path: jike/jike004
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -236,7 +236,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike005
+    path: jike/jike005
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -261,7 +261,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike006
+    path: jike/jike006
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -286,7 +286,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike007
+    path: jike/jike007
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -311,7 +311,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike008
+    path: jike/jike008
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -336,7 +336,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike009
+    path: jike/jike009
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -361,7 +361,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike010
+    path: jike/jike010
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -386,7 +386,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike011
+    path: jike/jike011
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -411,7 +411,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike012
+    path: jike/jike012
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -436,7 +436,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike013
+    path: jike/jike013
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -461,7 +461,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike014
+    path: jike/jike014
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -486,7 +486,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike015
+    path: jike/jike015
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -511,7 +511,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike016
+    path: jike/jike016
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -536,7 +536,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike017
+    path: jike/jike017
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -561,7 +561,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike018
+    path: jike/jike018
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -586,7 +586,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike019
+    path: jike/jike019
   m_CompressedRotationCurves: []
   m_EulerCurves: []
   m_PositionCurves:
@@ -595,17 +595,17 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.9692555, y: -0.0015000018, z: -1.1108636}
-        inSlope: {x: -0, y: -0, z: 7.0693583}
-        outSlope: {x: -0, y: -0, z: 7.0693583}
+        value: {x: 0.9692555, y: -0.0015000209, z: -0.7465511}
+        inSlope: {x: -0, y: -0, z: 7.06936}
+        outSlope: {x: -0, y: -0, z: 7.06936}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.5
-        value: {x: 0.9692555, y: -0.0015000018, z: 2.423816}
-        inSlope: {x: -0, y: -0, z: 7.0693607}
+        value: {x: 0.9692555, y: -0.0015000209, z: 2.7881286}
+        inSlope: {x: -0, y: -0, z: 7.0693564}
         outSlope: {x: -0, y: -0, z: -4.4651237}
         tangentMode: 0
         weightedMode: 0
@@ -613,9 +613,9 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 1
-        value: {x: 0.9692555, y: -0.0015000018, z: 0.19125389}
-        inSlope: {x: -0, y: -0, z: -4.4651227}
-        outSlope: {x: -0, y: -0, z: -4.4651227}
+        value: {x: 0.9692555, y: -0.0015000209, z: 0.5555663}
+        inSlope: {x: -0, y: -0, z: -4.465127}
+        outSlope: {x: -0, y: -0, z: -4.465127}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -629,7 +629,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.9692555, y: -0.0015000033, z: -1.6376618}
+        value: {x: 0.9725136, y: -0.008314703, z: -1.6110053}
         inSlope: {x: -0, y: -0, z: 2.320065}
         outSlope: {x: -0, y: -0, z: 2.320065}
         tangentMode: 0
@@ -638,7 +638,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.5
-        value: {x: 0.9692555, y: -0.0015000033, z: -0.47762892}
+        value: {x: 0.9725136, y: -0.008314703, z: -0.45097244}
         inSlope: {x: -0, y: -0, z: 2.3200662}
         outSlope: {x: 2.2436833, y: -0, z: -0}
         tangentMode: 0
@@ -647,7 +647,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 1
-        value: {x: 2.091097, y: -0.0015000033, z: -0.47762892}
+        value: {x: 2.094355, y: -0.008314703, z: -0.45097244}
         inSlope: {x: 2.243685, y: -0, z: -0}
         outSlope: {x: 2.243685, y: -0, z: -0}
         tangentMode: 0
@@ -716,7 +716,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1
+    path: jike
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -750,7 +750,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike001
+    path: jike/jike001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -784,7 +784,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike002
+    path: jike/jike002
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -818,7 +818,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike003
+    path: jike/jike003
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -852,7 +852,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike004
+    path: jike/jike004
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -886,7 +886,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike005
+    path: jike/jike005
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -920,7 +920,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike006
+    path: jike/jike006
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -954,7 +954,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike007
+    path: jike/jike007
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -988,7 +988,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike008
+    path: jike/jike008
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1022,7 +1022,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike009
+    path: jike/jike009
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1056,7 +1056,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike010
+    path: jike/jike010
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1090,7 +1090,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike011
+    path: jike/jike011
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1124,7 +1124,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike012
+    path: jike/jike012
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1158,7 +1158,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike013
+    path: jike/jike013
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1192,7 +1192,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike014
+    path: jike/jike014
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1226,7 +1226,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike015
+    path: jike/jike015
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1260,7 +1260,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike016
+    path: jike/jike016
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1294,7 +1294,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike017
+    path: jike/jike017
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1328,7 +1328,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike018
+    path: jike/jike018
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1362,7 +1362,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike019
+    path: jike/jike019
   m_ScaleCurves:
   - curve:
       serializedVersion: 2
@@ -1388,7 +1388,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike001
+    path: jike/jike001
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1413,7 +1413,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike013
+    path: jike/jike013
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1438,7 +1438,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike014
+    path: jike/jike014
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1463,7 +1463,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike015
+    path: jike/jike015
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1488,7 +1488,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike016
+    path: jike/jike016
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1513,7 +1513,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike017
+    path: jike/jike017
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1538,7 +1538,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: fenliaodou 1/jike018
+    path: jike/jike018
   m_FloatCurves: []
   m_PPtrCurves: []
   m_SampleRate: 30

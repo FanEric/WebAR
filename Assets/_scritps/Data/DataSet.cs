@@ -23,6 +23,8 @@ public class DataSet : MonoBehaviour
         audios.Add(Const.JSJG, new List<AudioClip>() { k21, k22});
         audios.Add(Const.DQXT, new List<AudioClip>() { k21, k22});
         audios.Add(Const.DCRGLXT, new List<AudioClip>() { k21, k22});
+        audios.Add(Const.KTYSJ, new List<AudioClip>() { k21, k22});
+        audios.Add(Const.YCTBDDJ, new List<AudioClip>() { k21, k22});
     }
 
     public List<Element> GetAssembleData(string id)

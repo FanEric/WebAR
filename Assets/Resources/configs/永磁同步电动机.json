@@ -1,0 +1,56 @@
+{
+	"elements":[
+	{
+		"shortName":"DJDGLS",
+		"fullName":"电机端盖螺栓",
+		"hasAnimation":true
+	},
+	{
+		"shortName":"DJDG",
+		"fullName":"电机端盖",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"XBDWXLS",
+		"fullName":"旋变定位销螺栓",
+		"hasAnimation":true
+	},
+	{
+		"shortName":"XBDWX",
+		"fullName":"旋变定位销",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"XZBYQLS",
+		"fullName":"旋转变压器螺栓",
+		"hasAnimation":true
+	},
+	{
+		"shortName":"XZBYQ",
+		"fullName":"旋转变压器",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"DZZCLS",
+		"fullName":"定子总成螺栓",
+		"hasAnimation":true
+	},
+	{
+		"shortName":"DJDZZC",
+		"fullName":"电机定子总成",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"DJZZZC",
+		"fullName":"电机转子总成",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"DJKT",
+		"fullName":"驱动电机壳体",
+		"hasAnimation":false
+	}
+	
+]
+	
+}

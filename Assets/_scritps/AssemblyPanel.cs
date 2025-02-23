@@ -47,7 +47,7 @@ public class AssemblyPanel : MonoBehaviour
         );
         GameObject assembleObj = GameObject.FindGameObjectWithTag("Assemble");
         if (assembleObj == null) Debug.LogError("拆装模型未找到");
-        mAnimArgName = assembleObj.name;
+        mAnimArgName = assembleObj.transform.parent.name;
         mAnimator = assembleObj.GetComponent<Animator>();
         mAnimationCallback = mAnimator.GetComponent<AnimatorCallbacks>();
         RegisterAnimatorCallback();
@@ -154,11 +154,6 @@ public class AssemblyPanel : MonoBehaviour
     public void DoAssemble(string partName)
     {
         SpawnJobItem("安装" + partName);
-    }
-
-    string GetJobNameByPartName(string partName)
-    {
-        return partName + "任务";
     }
 
     private void OnDisable()

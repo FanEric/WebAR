@@ -1,0 +1,56 @@
+{
+	"elements":[
+	{
+		"shortName":"YSJDGLS",
+		"fullName":"压缩机端盖螺栓",
+		"hasAnimation":true
+	},
+	{
+		"shortName":"YSJDG",
+		"fullName":"压缩机端盖",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"DGDP",
+		"fullName":"端盖垫片",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"WLJP",
+		"fullName":"涡轮静盘",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"WLDP",
+		"fullName":"涡轮动盘",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"FMGQ",
+		"fullName":"防磨钢圈",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"ZZC",
+		"fullName":"主轴承",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"PXHK",
+		"fullName":"偏心滑块",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"MFQ",
+		"fullName":"密封圈",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"ZZZC",
+		"fullName":"转子总成",
+		"hasAnimation":false
+	}
+	
+]
+	
+}
