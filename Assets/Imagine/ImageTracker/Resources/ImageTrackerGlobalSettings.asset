@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageTargetInfos:
   - id: "\u51CF\u901F\u673A\u6784"
-    texture: {fileID: 2800000, guid: 9362df39ecf960e4f8d4b6b84159a104, type: 3}
+    texture: {fileID: 2800000, guid: b5fb0902259459b41a897c5ebd6fdca3, type: 3}
   - id: "\u6C34\u7C89\u6DF7\u5408\u5668"
-    texture: {fileID: 2800000, guid: 1fbe77f5cd4542f4d9b7bbd516f1902a, type: 3}
+    texture: {fileID: 2800000, guid: fc72d4087af854a41a71de5abb9715bc, type: 3}
   - id: "\u6C38\u78C1\u540C\u6B65\u7535\u52A8\u673A"
-    texture: {fileID: 2800000, guid: 8e6ffd4520c92b846b3d2ca818720bb4, type: 3}
+    texture: {fileID: 2800000, guid: ec4987fdcdcb2074a9a0b411580f9f6a, type: 3}
   - id: "\u7535\u6C60\u70ED\u7BA1\u7406\u7CFB\u7EDF"
-    texture: {fileID: 2800000, guid: 89db52373992f3542a548c7b98f8b0fa, type: 3}
+    texture: {fileID: 2800000, guid: 849412b216cbec647bf5a1e58f6f2d5d, type: 3}
   - id: "\u7535\u9A71\u7CFB\u7EDF"
-    texture: {fileID: 2800000, guid: 6fe04450691397d409c7affed725583b, type: 3}
+    texture: {fileID: 2800000, guid: 282107d51b9a9424991a549bfdcd3738, type: 3}
   - id: "\u7A7A\u8C03\u538B\u7F29\u673A"
-    texture: {fileID: 2800000, guid: 0017d7bc07362634d94f1fcbaf049304, type: 3}
+    texture: {fileID: 2800000, guid: 53d9163bcf4957541b3c76d0870d4b85, type: 3}
   settingsTemplates:
   - {fileID: 11400000, guid: 35c99cc7b662a46eb89cc7a32e239494, type: 2}
   - {fileID: 11400000, guid: 9cf415d375f91458483df57436950575, type: 2}

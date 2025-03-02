@@ -10,6 +10,14 @@ public class DataSet : MonoBehaviour
     public AudioClip k12;
     public AudioClip k21;
     public AudioClip k22;
+    public AudioClip k31;
+    public AudioClip k32;
+    public AudioClip k41;
+    public AudioClip k42;
+    public AudioClip k51;
+    public AudioClip k52;
+    public AudioClip k61;
+    public AudioClip k62;
     public Color kHightlightColor;
     public Dictionary<string, List<AudioClip>> audios = new Dictionary<string, List<AudioClip>>();
     public Material[] kTransMats;
@@ -21,10 +29,10 @@ public class DataSet : MonoBehaviour
 
         audios.Add(Const.SFHEQ, new List<AudioClip>() { k11, k12});
         audios.Add(Const.JSJG, new List<AudioClip>() { k21, k22});
-        audios.Add(Const.DQXT, new List<AudioClip>() { k21, k22});
-        audios.Add(Const.DCRGLXT, new List<AudioClip>() { k21, k22});
-        audios.Add(Const.KTYSJ, new List<AudioClip>() { k21, k22});
-        audios.Add(Const.YCTBDDJ, new List<AudioClip>() { k21, k22});
+        audios.Add(Const.DQXT, new List<AudioClip>() { k31, k32});
+        audios.Add(Const.DCRGLXT, new List<AudioClip>() { k41, k42});
+        audios.Add(Const.KTYSJ, new List<AudioClip>() { k51, k52});
+        audios.Add(Const.YCTBDDJ, new List<AudioClip>() { k61, k62});
     }
 
     public List<Element> GetAssembleData(string id)

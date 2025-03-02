@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class ManipulateObject : MonoBehaviour
 {
+    public static ManipulateObject instance;
+
     private float previousDistance;
     private Vector2 previousPosition;
     private Vector2[] previousTouchPositions = new Vector2[2];
@@ -44,7 +46,7 @@ public class ManipulateObject : MonoBehaviour
         mTrans = transform;
     }
 
-    bool CheckMouseOnUI()
+    public bool CheckMouseOnUI()
     {
         PointerEventData eventData = new PointerEventData(eventSystem);
         eventData.pressPosition = Input.mousePosition;

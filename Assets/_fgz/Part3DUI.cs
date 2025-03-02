@@ -8,6 +8,7 @@ public class Part3DUI : MonoBehaviour
     public float desire = 10f;
     public Text kTxt;
     private Transform mRoot;
+    private Transform mLabelTrans;
 
     public void SetData(string pname, Transform target)
     {
@@ -21,11 +22,14 @@ public class Part3DUI : MonoBehaviour
         float big = size.x > size.y ? size.x : size.y;
         height = big / desire;
         mRoot = kTarget.root;
+
+        mLabelTrans = kTarget.GetChild(0);
     }
 
     private void Update()
     {
-        transform.position = kTarget.position + Vector3.up * height * mRoot.localScale.x;
+        //transform.position = kTarget.position + Vector3.up * height * mRoot.localScale.x;
+        transform.position = mLabelTrans.position;
         transform.forward = Camera.main.transform.forward;
     }
 

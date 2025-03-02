@@ -27,7 +27,6 @@ public class AssemblyPanel : MonoBehaviour
     public GameObject kResetObj;
     public Button kResetCancel;
     public Button kResetOk;
-    public ManipulateObject kManipulateObject;
     private Animator mAnimator;
     private AnimatorCallbacks mAnimationCallback;
 
@@ -87,14 +86,14 @@ public class AssemblyPanel : MonoBehaviour
         kResetOk.onClick.AddListener(() => {
             kResetObj.SetActive(false);
             DoReset();
-            kManipulateObject.DoReset();
+            ManipulateObject.instance.DoReset();
         });
         mAnimationCallback.OnAnimationComplete += DoAnimationComplete;
         mAnimationCallback.OnAnimationStart += DoAnimationStart;
 
         kJobToggle.onValueChanged.AddListener(isOn => { 
             kJobPanel.SetActive(isOn);
-            kManipulateObject.canOperate = !isOn;
+            ManipulateObject.instance.canOperate = !isOn;
         });
         kJobClose.onClick.AddListener(() => { kJobToggle.isOn = false; });
     }
@@ -226,12 +225,10 @@ public class AssemblyPanel : MonoBehaviour
     RaycastHit mHit;
     GameObject mHitObj;
     ElementObj mCurElement;
-    public EventSystem eventSystem;
-    public GraphicRaycaster graphicRaycaster;
 
     private void Update()
     {
-        if (CheckMouseOnUI()) return;
+        if (ManipulateObject.instance.CheckMouseOnUI()) return;
         if (Input.GetMouseButtonDown(0))
         {
             mRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -312,17 +309,6 @@ public class AssemblyPanel : MonoBehaviour
                 }
             }
         }
-    }
-
-
-    bool CheckMouseOnUI()
-    {
-        PointerEventData eventData = new PointerEventData(eventSystem);
-        eventData.pressPosition = Input.mousePosition;
-        eventData.position = Input.mousePosition;
-        List<RaycastResult> list = new List<RaycastResult>();
-        graphicRaycaster.Raycast(eventData, list);
-        return list.Count > 0;
     }
 
 }

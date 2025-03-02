@@ -30,8 +30,10 @@ public class UIManager : MonoBehaviour
 
     public GameObject kBGPlane;
 
-    public GameObject kStructPanel;
-    public GameObject kAssemblyPanel;
+    public GameObject kStructPrb;
+    private GameObject mStructIns;
+    public GameObject kAssemblyPrb;
+    private GameObject mAssemblyIns;
     public GameObject kTestObj1;
     public GameObject kTestObj2;
     public GameObject kTestObj3;
@@ -43,7 +45,6 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //DataSet.instance.GetAssembleData("减速机构");
         kBrowseTog.onValueChanged.AddListener(ToBrowse);
         kInterTog.onValueChanged.AddListener(ToInter);
         kVoiceTog.onValueChanged.AddListener(ToVoice);
@@ -88,7 +89,7 @@ public class UIManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Test(Const.DQXT, kTestObj4, true);
+            Test(Const.DCRGLXT, kTestObj4, true);
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
@@ -107,32 +108,9 @@ public class UIManager : MonoBehaviour
         obj.transform.GetChild(0).gameObject.SetActive(false);
         obj.transform.GetChild(1).gameObject.SetActive(true);
         if (isSturct)
-            kStructPanel.SetActive(true);
+            mStructIns = Instantiate(kStructPrb, ManipulateObject.instance.graphicRaycaster.transform);
         else
-            kAssemblyPanel.SetActive(true);
-        kMenuPanel.SetActive(true);
-        kTransPanel.SetActive(true);
-        kScanPanel.SetActive(false);
-    }
-
-    void TestStruct()
-    {
-
-        //GlobalData.CurTrackedId = Const.DQXT;
-        //kTestObj3.SetActive(true );
-        kTestObj1.transform.GetChild(0).gameObject.SetActive(false);
-        kTestObj1.transform.GetChild(1).gameObject.SetActive(true);
-        kStructPanel.SetActive(true);
-        kMenuPanel.SetActive(true);
-        kTransPanel.SetActive(true);
-        kScanPanel.SetActive(false);
-    }
-
-    void TestAssemble()
-    {
-        kTestObj2.transform.GetChild(0).gameObject.SetActive(false);
-        kTestObj2.transform.GetChild(1).gameObject.SetActive(true);
-        kAssemblyPanel.SetActive(true);
+            mAssemblyIns = Instantiate(kAssemblyPrb, ManipulateObject.instance.graphicRaycaster.transform);
         kMenuPanel.SetActive(true);
         kTransPanel.SetActive(true);
         kScanPanel.SetActive(false);
@@ -162,7 +140,7 @@ public class UIManager : MonoBehaviour
         kScanPanel.SetActive(true);
         kMenuPanel.SetActive(false);
         kTransPanel.SetActive(false);
-
+        kAudioSource?.Stop();
         DoReset();
         kTracker.DoReset();
 
@@ -192,21 +170,25 @@ public class UIManager : MonoBehaviour
 
             if (structIDs.Contains(GlobalData.CurTrackedId))
             {
-                kStructPanel.SetActive(true);
+                if(mStructIns == null)
+                    mStructIns = Instantiate<GameObject>(kStructPrb, ManipulateObject.instance.graphicRaycaster.transform);
+                mStructIns.SetActive(true);
                 Debug.Log("结构展示： " + GlobalData.CurTrackedId);
             }
             else if (assemblyIDs.Contains(GlobalData.CurTrackedId))
             {
                 Debug.Log("拆装： " + GlobalData.CurTrackedId);
-                kAssemblyPanel.SetActive(true);
+                if(mAssemblyIns == null)
+                    mAssemblyIns = Instantiate(kAssemblyPrb, ManipulateObject.instance.graphicRaycaster.transform);
+                mAssemblyIns.SetActive(true);
             }
             kVoiceTog.isOn = false;
             kAudioSource.clip = DataSet.instance.audios[GlobalData.CurTrackedId][1];
         }
         else
-        { 
-            kStructPanel.SetActive(false);
-            kAssemblyPanel.SetActive(false);
+        {
+            mStructIns.SetActive(false);
+            mAssemblyIns.SetActive(false);
         }
     }
 
@@ -216,12 +198,6 @@ public class UIManager : MonoBehaviour
         if (isOn)
         {
             kAudioSource.Play();
-            //kTracker.SetTargetChildEnable(2);
-            //kManiScript.DoReset();
-
-            //kManiScript.doTranslate = false;
-            //kManiScript.doRotate = false;
-            //kManiScript.doScale = false;
         }
         else
         {
@@ -233,8 +209,16 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("DoReset");
         GlobalData.CurTrackedId = "";
-        kStructPanel.SetActive(false);
-        kAssemblyPanel.SetActive(false);
+        if (mStructIns != null)
+        {
+            Destroy(mStructIns);
+            mStructIns = null;
+        }
+        if(mAssemblyIns != null)
+        {
+            Destroy(mAssemblyIns);
+            mAssemblyIns = null;
+        }
         kBGPlane.SetActive(false);
         kBrowseTog.isOn = true;
         kManiScript.DoReset();

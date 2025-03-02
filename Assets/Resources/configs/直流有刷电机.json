@@ -1,0 +1,28 @@
+[
+	{
+		"shortName":"chilun",
+		"fullName":"齿轮",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"gudingluoshuan",
+		"fullName":"固定螺栓",
+		"hasAnimation":true
+	},
+	{
+		"shortName":"dianjiduangai",
+		"fullName":"电机端盖",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"zhuanzizogncheng",
+		"fullName":"转子总成",
+		"hasAnimation":false
+	},
+	{
+		"shortName":"ketidingzizongcheng",
+		"fullName":"壳体定子总成",
+		"hasAnimation":false
+	}
+	
+]

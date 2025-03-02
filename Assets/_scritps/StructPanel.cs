@@ -14,7 +14,6 @@ public class StructPanel : MonoBehaviour
     public Toggle kHideTog;
     public Toggle kMonoTog;
     public Button kResetBtn;
-    public ManipulateObject kManiScript;
     public ToggleGroup kToggleGroup;
     public CanvasGroup kAssemTogCG;
 
@@ -33,7 +32,8 @@ public class StructPanel : MonoBehaviour
 
     void Start()
     {
-        kArrowAnim.SetBool("toPand", false);
+        Debug.Log("StructPanel---Start");
+        kArrowAnim.SetBool("toPand", true);
         GameObject structObj = GameObject.FindGameObjectWithTag("Struct");
         if (structObj != null)
         {
@@ -68,14 +68,14 @@ public class StructPanel : MonoBehaviour
             {
                 PartEntity entity = GetSelectedEntity();
                 entity?.DoSelect(false, true);
-                kManiScript.DoReset();
+                ManipulateObject.instance.DoReset();
                 mPartAnim?.SetInteger("DoAssem", 1);
                 Invoke("ShowAll3DUI", 2);
             }
         });
         kArrowTog.onValueChanged.AddListener(isOn => 
         {
-            kArrowAnim.SetBool("toPand", isOn);
+            kArrowAnim.SetBool("toPand", !isOn);
         });
 
         kTransTog.onValueChanged.AddListener(isOn => {
@@ -155,7 +155,7 @@ public class StructPanel : MonoBehaviour
     {
         mPartAnim.enabled = false;
         StartCoroutine(selected.DoMono());
-        kManiScript.DoReset(selected);
+        ManipulateObject.instance.DoReset(selected);
         foreach (var entity in mParts)
         { 
             entity.DoHide(entity != selected);
@@ -173,7 +173,7 @@ public class StructPanel : MonoBehaviour
     {
         kAssemTog.isOn = true;
         kToggleGroup.allowSwitchOff = true;
-        kManiScript.DoReset();
+        ManipulateObject.instance.DoReset();
         kMonoTog.isOn = false;
         kArrowTog.isOn = false;
 
@@ -214,12 +214,10 @@ public class StructPanel : MonoBehaviour
     GameObject mHitObj;
     GameObject mLastHitObj;
     PartEntity mSelectedPart;
-    public EventSystem eventSystem;
-    public GraphicRaycaster graphicRaycaster;
 
     private void Update()
     {
-        if (CheckMouseOnUI()) return;
+        if (ManipulateObject.instance.CheckMouseOnUI()) return;
         if (Input.GetMouseButtonDown(0))
         {
             mRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -262,17 +260,6 @@ public class StructPanel : MonoBehaviour
                 }
             }
         }
-    }
-
-
-    bool CheckMouseOnUI()
-    {
-        PointerEventData eventData = new PointerEventData(eventSystem);
-        eventData.pressPosition = Input.mousePosition;
-        eventData.position = Input.mousePosition;
-        List<RaycastResult> list = new List<RaycastResult>();
-        graphicRaycaster.Raycast(eventData, list);
-        return list.Count > 0;
     }
 
 }
