@@ -18,7 +18,8 @@ public class PartEntity : MonoBehaviour
     private Vector3 mLocalPos;
     public float mModelHight;
 
-    private Part3DUI mPart3DUI;
+    private Part2DUI mPart3DUI;
+    //private Part3DUI mPart3DUI;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -38,7 +39,7 @@ public class PartEntity : MonoBehaviour
 
     void Init3DUI()
     {
-        mPart3DUI = Instantiate(StructPanel.Instance.k3DUIObj).GetComponent<Part3DUI>();
+        mPart3DUI = Instantiate(StructPanel.Instance.k3DUIObj, ManipulateObject.instance.kRectParent.transform).GetComponent<Part2DUI>();
         mPart3DUI.SetData(mPartName, transform);
         mPart3DUI.Hide();
     }

@@ -25,6 +25,12 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: 282107d51b9a9424991a549bfdcd3738, type: 3}
   - id: "\u7A7A\u8C03\u538B\u7F29\u673A"
     texture: {fileID: 2800000, guid: 53d9163bcf4957541b3c76d0870d4b85, type: 3}
+  - id: "\u76F4\u6D41\u6709\u5237\u7535\u673A"
+    texture: {fileID: 2800000, guid: 8468c52c748e44a409ae65ff8407d08d, type: 3}
+  - id: "\u79BB\u5FC3\u51C0\u4E73\u673A"
+    texture: {fileID: 2800000, guid: 17dee6f6d7a4ad54b966d441de586ab9, type: 3}
+  - id: "\u63A5\u89E6\u5668"
+    texture: {fileID: 2800000, guid: 8494e9683c2bc874899b86528d0338db, type: 3}
   settingsTemplates:
   - {fileID: 11400000, guid: 35c99cc7b662a46eb89cc7a32e239494, type: 2}
   - {fileID: 11400000, guid: 9cf415d375f91458483df57436950575, type: 2}

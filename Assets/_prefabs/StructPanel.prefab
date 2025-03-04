@@ -781,7 +781,7 @@ MonoBehaviour:
   kToggleGroup: {fileID: 6412923924282245430}
   kAssemTogCG: {fileID: 6950622211798835114}
   kPartContent: {fileID: 6637406564456708894}
-  k3DUIObj: {fileID: 6167642680873757796, guid: 91bb8ed819cdb7f4c9889869bc914965, type: 3}
+  k3DUIObj: {fileID: 4739700893029264405, guid: 84e94f84d8d70b6469be9c88ffc418af, type: 3}
 --- !u!1 &2026377594162888470
 GameObject:
   m_ObjectHideFlags: 0

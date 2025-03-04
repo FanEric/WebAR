@@ -40,9 +40,11 @@ public class ManipulateObject : MonoBehaviour
     public EventSystem eventSystem;
     public GraphicRaycaster graphicRaycaster;
     public bool canOperate = true;
+    public RectTransform kRectParent;
 
     private void Awake()
     {
+        instance = this;
         mTrans = transform;
     }
 

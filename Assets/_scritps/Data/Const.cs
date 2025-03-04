@@ -8,6 +8,9 @@ public class Const
     public const string DCRGLXT = "电池热管理系统";
     public const string KTYSJ = "空调压缩机";
     public const string YCTBDDJ = "永磁同步电动机";
+    public const string ZLYSDJ = "直流有刷电机";
+    public const string LXJRJ = "离心净乳机";
+    public const string JCQ = "接触器";
 
 
     public static Color HightlightColor = new Color(0, 1, 0);

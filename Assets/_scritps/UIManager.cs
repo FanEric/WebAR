@@ -7,8 +7,8 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-    string[] structIDs = { Const.SFHEQ, Const.DQXT, Const.DCRGLXT };
-    string[] assemblyIDs = { Const.JSJG, Const.KTYSJ, Const.YCTBDDJ };
+    string[] structIDs = { Const.SFHEQ, Const.DQXT, Const.DCRGLXT, Const.LXJRJ, Const.JCQ };
+    string[] assemblyIDs = { Const.JSJG, Const.KTYSJ, Const.YCTBDDJ, Const.ZLYSDJ };
 
     public Toggle kBrowseTog;
     public Toggle kInterTog;
@@ -40,6 +40,9 @@ public class UIManager : MonoBehaviour
     public GameObject kTestObj4;
     public GameObject kTestObj5;
     public GameObject kTestObj6;
+    public GameObject kTestObj7;
+    public GameObject kTestObj8;
+    public GameObject kTestObj9;
 
     public AudioSource kAudioSource;
     // Start is called before the first frame update
@@ -99,18 +102,31 @@ public class UIManager : MonoBehaviour
         {
             Test(Const.YCTBDDJ, kTestObj6, false);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+                Test(Const.ZLYSDJ, kTestObj7, false);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            Test(Const.LXJRJ, kTestObj8, true);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            Test(Const.LXJRJ, kTestObj9, true);
+        }
     }
 
     void Test(string id, GameObject obj, bool isSturct)
     {
-        GlobalData.CurTrackedId = id;
-        obj.SetActive(true);
-        obj.transform.GetChild(0).gameObject.SetActive(false);
-        obj.transform.GetChild(1).gameObject.SetActive(true);
         if (isSturct)
             mStructIns = Instantiate(kStructPrb, ManipulateObject.instance.graphicRaycaster.transform);
         else
             mAssemblyIns = Instantiate(kAssemblyPrb, ManipulateObject.instance.graphicRaycaster.transform);
+        GlobalData.CurTrackedId = id;
+        obj.SetActive(true);
+        obj.transform.GetChild(0).gameObject.SetActive(false);
+        obj.transform.GetChild(1).gameObject.SetActive(true);
+        
         kMenuPanel.SetActive(true);
         kTransPanel.SetActive(true);
         kScanPanel.SetActive(false);
@@ -165,8 +181,7 @@ public class UIManager : MonoBehaviour
         if (string.IsNullOrEmpty(GlobalData.CurTrackedId)) return;
         if (isOn)
         {
-            kTracker.SetTargetChildEnable(1);
-            kManiScript.DoReset();
+            
 
             if (structIDs.Contains(GlobalData.CurTrackedId))
             {
@@ -182,6 +197,8 @@ public class UIManager : MonoBehaviour
                     mAssemblyIns = Instantiate(kAssemblyPrb, ManipulateObject.instance.graphicRaycaster.transform);
                 mAssemblyIns.SetActive(true);
             }
+            kTracker.SetTargetChildEnable(1);
+            kManiScript.DoReset();
             kVoiceTog.isOn = false;
             kAudioSource.clip = DataSet.instance.audios[GlobalData.CurTrackedId][1];
         }
