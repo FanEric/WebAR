@@ -25,9 +25,18 @@ public class StructPanel : MonoBehaviour
 
     public bool IsMono { get { return kMonoTog.isOn; } }
 
+    private GameObject mQDDJObj;
+    private Animator mQDDJAnim;
+    private List<PartEntity> mQDDJParts = new List<PartEntity>();
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    void OnEnable()
+    {
+        kArrowAnim.SetBool("toPand", true);
     }
 
     void Start()
@@ -44,14 +53,39 @@ public class StructPanel : MonoBehaviour
             for (int i = 0; i < trans.childCount; i++)
             {
                 PartEntity entity = trans.GetChild(i).GetComponent<PartEntity>();
-                mParts.Add(entity);
-                if (i < itemCount)
+                if (entity != null)
                 {
-                    Transform itemTrans = kPartContent.GetChild(i);
-                    itemTrans.gameObject.SetActive(true);
-                    PartItem item = itemTrans.GetComponent<PartItem>();
-                    entity.SetItem(item);
-                    item.SetEntity(entity);
+                    mParts.Add(entity);
+                    if (i < itemCount)
+                    {
+                        Transform itemTrans = kPartContent.GetChild(i);
+                        itemTrans.gameObject.SetActive(true);
+                        PartItem item = itemTrans.GetComponent<PartItem>();
+                        if (item != null)
+                        {
+                            entity.SetItem(item);
+                            item.SetEntity(entity);
+                        }
+                    }
+                }
+            }
+                
+            if(structObj.name == "S_ZCGJBJ")
+            {
+                mQDDJObj = structObj.transform.parent.GetChild(2).gameObject;
+                if (mQDDJObj != null)
+                {
+                    mQDDJAnim = mQDDJObj.GetComponent<Animator>();
+                    Transform trans2 = mQDDJObj.transform;
+                    for (int i = 0; i < trans2.childCount; i++)
+                    {
+                        PartEntity en = trans2.GetChild(i).GetComponent<PartEntity>();
+                        if (en != null)
+                        {
+                            mQDDJParts.Add(en);
+
+                        }
+                    }
                 }
             }
         }
@@ -160,6 +194,26 @@ public class StructPanel : MonoBehaviour
         { 
             entity.DoHide(entity != selected);
         }
+
+        //if (selected.mPartName == "Çý¶¯µç»ú" && mQDDJObj != null && mQDDJAnim != null)
+        //{
+        //    kPartTransform.gameObject.SetActive(false);
+        //    mQDDJObj.SetActive(true);
+        //    mQDDJAnim.SetInteger("DoAssem", 1);
+        //    Invoke("ShowQDDJ3DUI", 2);
+        //}
+    }
+
+    void ShowQDDJ3DUI()
+    {
+        foreach (var item in mQDDJParts)
+            item.Show3DUI();
+    }
+
+    void HideQDDJ3DUI()
+    {
+        foreach (var item in mQDDJParts)
+            item.Show3DUI();
     }
 
     void UndoMono(PartEntity selected)
@@ -167,6 +221,14 @@ public class StructPanel : MonoBehaviour
         DoReset();
         selected?.UndoMono();
         mPartAnim.enabled = true;
+
+        if (mQDDJObj != null && mQDDJAnim != null)
+        {
+            kPartTransform.gameObject.SetActive(true);
+            mQDDJObj.SetActive(false);
+            mQDDJAnim.SetInteger("DoAssem", 2);
+            HideQDDJ3DUI();
+        }
     }
 
     public void DoReset()
@@ -186,6 +248,14 @@ public class StructPanel : MonoBehaviour
         
         mHitObj = null;
         mSelectedPart = null;
+
+        if (mQDDJObj != null && mQDDJAnim != null)
+        {
+            kPartTransform.gameObject.SetActive(true);
+            mQDDJObj.SetActive(false);
+            mQDDJAnim.SetInteger("DoAssem", 2);
+            HideQDDJ3DUI();
+        }
     }
 
     PartEntity GetSelectedEntity()
@@ -198,10 +268,6 @@ public class StructPanel : MonoBehaviour
         return null;
     }
 
-    private void OnEnable()
-    {
-        kAssemTog.isOn = true;
-    }
 
     private void OnDisable()
     {

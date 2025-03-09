@@ -11,6 +11,7 @@ public class Const
     public const string ZLYSDJ = "直流有刷电机";
     public const string LXJRJ = "离心净乳机";
     public const string JCQ = "接触器";
+    public const string ZCGJBJ = "整车关键部件";
 
 
     public static Color HightlightColor = new Color(0, 1, 0);

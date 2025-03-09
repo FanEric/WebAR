@@ -44,7 +44,7 @@ public class PartEntity : MonoBehaviour
         mPart3DUI.Hide();
     }
 
-    public void Show3DUI() { mPart3DUI.Show(); }
+    public void Show3DUI() { mPart3DUI?.Show(); }
     public void Hide3DUI() { mPart3DUI?.Hide(); }
 
     public void SetItem(PartItem item) { mItem = item; }
@@ -126,13 +126,13 @@ public class PartEntity : MonoBehaviour
                 item.materials = mRenderMats[item];
             }
         }
-        mItem.DoHideOrTrans(mIsTransparent || mIsHided);
+        mItem?.DoHideOrTrans(mIsTransparent || mIsHided);
     }
 
     public void DoHide(bool isHided)
     {
         mIsHided = isHided;
         gameObject.SetActive(!mIsHided);
-        mItem.DoHideOrTrans(mIsTransparent || mIsHided);
+        mItem?.DoHideOrTrans(mIsTransparent || mIsHided);
     }
 }

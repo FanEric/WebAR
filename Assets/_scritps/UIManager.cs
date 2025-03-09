@@ -7,7 +7,7 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-    string[] structIDs = { Const.SFHEQ, Const.DQXT, Const.DCRGLXT, Const.LXJRJ, Const.JCQ };
+    string[] structIDs = { Const.SFHEQ, Const.DQXT, Const.DCRGLXT, Const.LXJRJ, Const.JCQ, Const.ZCGJBJ };
     string[] assemblyIDs = { Const.JSJG, Const.KTYSJ, Const.YCTBDDJ, Const.ZLYSDJ };
 
     public Toggle kBrowseTog;
@@ -43,6 +43,7 @@ public class UIManager : MonoBehaviour
     public GameObject kTestObj7;
     public GameObject kTestObj8;
     public GameObject kTestObj9;
+    public GameObject kTestObj10;
 
     public AudioSource kAudioSource;
     // Start is called before the first frame update
@@ -114,6 +115,10 @@ public class UIManager : MonoBehaviour
         {
             Test(Const.LXJRJ, kTestObj9, true);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            Test(Const.LXJRJ, kTestObj10, true);
+        }
     }
 
     void Test(string id, GameObject obj, bool isSturct)
@@ -181,8 +186,6 @@ public class UIManager : MonoBehaviour
         if (string.IsNullOrEmpty(GlobalData.CurTrackedId)) return;
         if (isOn)
         {
-            
-
             if (structIDs.Contains(GlobalData.CurTrackedId))
             {
                 if(mStructIns == null)
@@ -204,8 +207,8 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            mStructIns.SetActive(false);
-            mAssemblyIns.SetActive(false);
+            mStructIns?.SetActive(false);
+            mAssemblyIns?.SetActive(false);
         }
     }
 

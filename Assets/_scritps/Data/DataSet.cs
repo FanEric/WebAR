@@ -24,6 +24,8 @@ public class DataSet : MonoBehaviour
     public AudioClip k82;
     public AudioClip k91;
     public AudioClip k92;
+    public AudioClip k101;
+    public AudioClip k102;
     public Color kHightlightColor;
     public Dictionary<string, List<AudioClip>> audios = new Dictionary<string, List<AudioClip>>();
     public Material[] kTransMats;
@@ -42,6 +44,7 @@ public class DataSet : MonoBehaviour
         audios.Add(Const.ZLYSDJ, new List<AudioClip>() { k71, k72});
         audios.Add(Const.LXJRJ, new List<AudioClip>() { k81, k82});
         audios.Add(Const.JCQ, new List<AudioClip>() { k91, k92});
+        audios.Add(Const.ZCGJBJ, new List<AudioClip>() { k101, k102});
     }
 
     public List<Element> GetAssembleData(string id)
