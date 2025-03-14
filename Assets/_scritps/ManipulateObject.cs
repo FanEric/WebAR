@@ -76,6 +76,22 @@ public class ManipulateObject : MonoBehaviour
         }
     }
 
+    public void ResetPos(PartEntity entity = null)
+    {
+        if (mTrans != null)
+        {
+            if (entity != null)
+            {
+                mTrans.position = new Vector3(0, 0, -1.5f / entity.mModelHight);
+            }
+            else
+            {
+                mTrans.position = Vector3.zero;
+            }
+        }
+    }
+
+
     void HandleMouse()
     {
         if (!canOperate) return;
@@ -196,68 +212,14 @@ public class ManipulateObject : MonoBehaviour
             }
         }
     }
-    //void HandleTouch()
-    //{
-    //    //kSldVale.text = kSld.value.ToString();
-    //    if (Input.touchCount == 1)
-    //    {
-    //        Touch touch = Input.GetTouch(0);
-    //        if (touch.phase == TouchPhase.Moved)
-    //        {
-    //            if (previousPosition == Vector2.zero)
-    //            {
-    //                previousPosition = touch.position;
-    //            }
-    //            else
-    //            {
-    //                Vector2 deltaPosition = touch.position - previousPosition;
-    //                transform.Rotate(Vector3.up, -deltaPosition.x * 0.5f);
-    //                previousPosition = touch.position;
-    //            }
-    //        }
-    //        else if (touch.phase == TouchPhase.Ended)
-    //        {
-    //            previousPosition = Vector2.zero;
-    //        }
-    //    }
-    //    else if (Input.touchCount == 2)
-    //    {
-    //        Touch touch1 = Input.GetTouch(0);
-    //        Touch touch2 = Input.GetTouch(1);
-
-    //        if (touch1.phase == TouchPhase.Began || touch2.phase == TouchPhase.Began)
-    //        {
-    //            previousTouchPositions[0] = touch1.position;
-    //            previousTouchPositions[1] = touch2.position;
-    //            previousDistance = Vector2.Distance(touch1.position, touch2.position);
-    //            previousTranslatePosition = transform.position;
-    //        }
-    //        else if (touch1.phase == TouchPhase.Moved && touch2.phase == TouchPhase.Moved)
-    //        {
-    //            Vector2 currentTouchPosition1 = touch1.position;
-    //            Vector2 currentTouchPosition2 = touch2.position;
-    //            float currentDistance = Vector2.Distance(currentTouchPosition1, currentTouchPosition2);
-    //            float scaleFactor = currentDistance / previousDistance;
-    //            transform.localScale *= scaleFactor;
-    //            previousDistance = currentDistance;
-
-    //            // ¼ÆËãË«Ö¸Æ½ÒÆ
-    //            Vector2 midPoint = (currentTouchPosition1 + currentTouchPosition2) / 2;
-    //            Vector2 previousMidPoint = (previousTouchPositions[0] + previousTouchPositions[1]) / 2;
-    //            Vector3 translation = new Vector3(midPoint.x - previousMidPoint.x, 0, midPoint.y - previousMidPoint.y);
-    //            transform.position = previousTranslatePosition + translation * kTransRate;
-    //            //transform.position = previousTranslatePosition + translation * kTransRate * kSld.value;
-    //        }
-    //    }
-    //}
 
     void Update() 
     {
         if (!canOperate) return;
         if (CheckMouseOnUI()) return;
-        //HandleMouse();
         HandleTouch();
 #if UNITY_EDITOR
+        HandleMouse();
         if (Input.GetKeyDown(KeyCode.Q))
         {
             doTranslate = true;

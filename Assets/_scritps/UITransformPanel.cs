@@ -8,6 +8,7 @@ public class UITransformPanel : MonoBehaviour
     public Toggle kTranslateTog;
     public Toggle kRotateTog;
     public Toggle kScaleTog;
+    public Button kFocusBtn;
     public ManipulateObject kManiScript;
 
     // Start is called before the first frame update
@@ -15,13 +16,18 @@ public class UITransformPanel : MonoBehaviour
     {
         kTranslateTog.onValueChanged.AddListener(isOn => { kManiScript.doTranslate = isOn; });
         kRotateTog.onValueChanged.AddListener(isOn => { kManiScript.doRotate = isOn; });
-        kScaleTog.onValueChanged.AddListener(isOn => { kManiScript.doScale = isOn; });
+        //kScaleTog.onValueChanged.AddListener(isOn => { kManiScript.doScale = isOn; });
+    }
+
+    private void Start()
+    {
+        kFocusBtn.onClick.AddListener(() => { EventDispatcher<EventDef, string>.DispatchEvent(EventDef.DoFocus, ""); });
     }
 
     private void OnEnable()
     {
         kTranslateTog.isOn = true;
         kRotateTog.isOn = false;
-        kScaleTog.isOn = false;
+        //kScaleTog.isOn = false;
     }
 }

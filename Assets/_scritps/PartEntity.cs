@@ -69,6 +69,11 @@ public class PartEntity : MonoBehaviour
         mPart3DUI.Hide();
     }
 
+    public Vector3 GetInverseLocalPos()
+    {
+        return -transform.position;
+    }
+
     public void UndoMono()
     {
         transform.localPosition = mLocalPos;

@@ -6,4 +6,5 @@ public enum EventDef
    PartUnselect,
    PartHide,
    IconClicked,
+   DoFocus
 }

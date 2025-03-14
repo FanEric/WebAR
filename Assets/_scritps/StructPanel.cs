@@ -28,6 +28,9 @@ public class StructPanel : MonoBehaviour
     private GameObject mQDDJObj;
     private Animator mQDDJAnim;
     private List<PartEntity> mQDDJParts = new List<PartEntity>();
+    private GameObject mBYDQ_CK;
+    private GameObject mBYDQ_Other;
+    private GameObject structObj;
 
     private void Awake()
     {
@@ -43,7 +46,7 @@ public class StructPanel : MonoBehaviour
     {
         Debug.Log("StructPanel---Start");
         kArrowAnim.SetBool("toPand", true);
-        GameObject structObj = GameObject.FindGameObjectWithTag("Struct");
+        structObj = GameObject.FindGameObjectWithTag("Struct");
         if (structObj != null)
         {
             kPartTransform = structObj.transform;
@@ -73,6 +76,8 @@ public class StructPanel : MonoBehaviour
             if(structObj.name == "S_ZCGJBJ")
             {
                 mQDDJObj = structObj.transform.parent.GetChild(2).gameObject;
+                mBYDQ_CK = GameObject.Find("BYDQ_CK");
+                mBYDQ_Other = GameObject.Find("BYDQ_Other");
                 if (mQDDJObj != null)
                 {
                     mQDDJAnim = mQDDJObj.GetComponent<Animator>();
@@ -161,6 +166,8 @@ public class StructPanel : MonoBehaviour
             }
         });
 
+        //EventDispatcher<EventDef, string>.AddListener(EventDef.DoFocus, (str) => { DoFocus(); });
+
         kResetBtn.onClick.AddListener(DoReset);
     }
 
@@ -195,13 +202,25 @@ public class StructPanel : MonoBehaviour
             entity.DoHide(entity != selected);
         }
 
-        //if (selected.mPartName == "驱动电机" && mQDDJObj != null && mQDDJAnim != null)
-        //{
-        //    kPartTransform.gameObject.SetActive(false);
-        //    mQDDJObj.SetActive(true);
-        //    mQDDJAnim.SetInteger("DoAssem", 1);
-        //    Invoke("ShowQDDJ3DUI", 2);
-        //}
+        if (mQDDJObj != null && mQDDJAnim != null)
+        {
+            if (selected.mPartName == "驱动电机")
+            {
+                kPartTransform.gameObject.SetActive(false);
+                mQDDJObj.SetActive(true);
+                mQDDJAnim.SetInteger("DoAssem", 1);
+                Invoke("ShowQDDJ3DUI", 2);
+            }
+            else
+            {
+                kPartTransform.gameObject.SetActive(true);
+                mQDDJObj.SetActive(false);
+                mQDDJAnim.SetInteger("DoAssem", 2);
+                HideQDDJ3DUI();
+            }
+        }
+        mBYDQ_CK?.SetActive(false);
+        mBYDQ_Other?.SetActive(false);
     }
 
     void ShowQDDJ3DUI()
@@ -213,7 +232,7 @@ public class StructPanel : MonoBehaviour
     void HideQDDJ3DUI()
     {
         foreach (var item in mQDDJParts)
-            item.Show3DUI();
+            item.Hide3DUI();
     }
 
     void UndoMono(PartEntity selected)
@@ -221,13 +240,22 @@ public class StructPanel : MonoBehaviour
         DoReset();
         selected?.UndoMono();
         mPartAnim.enabled = true;
+    }
 
-        if (mQDDJObj != null && mQDDJAnim != null)
+    PartEntity mLastSelected;
+    void DoFocus()
+    { 
+        PartEntity part = GetSelectedEntity();
+        ManipulateObject.instance.ResetPos(part);
+        if (part != null)
         {
-            kPartTransform.gameObject.SetActive(true);
-            mQDDJObj.SetActive(false);
-            mQDDJAnim.SetInteger("DoAssem", 2);
-            HideQDDJ3DUI();
+            if(mLastSelected != part)
+                structObj.transform.localPosition += part.GetInverseLocalPos();
+            mLastSelected = part;
+        }
+        else
+        {
+            structObj.transform.position = Vector3.zero;
         }
     }
 
@@ -256,6 +284,8 @@ public class StructPanel : MonoBehaviour
             mQDDJAnim.SetInteger("DoAssem", 2);
             HideQDDJ3DUI();
         }
+        mBYDQ_CK?.SetActive(true);
+        mBYDQ_Other?.SetActive(true);
     }
 
     PartEntity GetSelectedEntity()
@@ -283,6 +313,7 @@ public class StructPanel : MonoBehaviour
 
     private void Update()
     {
+        if (IsMono) { return; }
         if (ManipulateObject.instance.CheckMouseOnUI()) return;
         if (Input.GetMouseButtonDown(0))
         {
